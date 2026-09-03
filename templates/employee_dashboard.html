@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Employee Dashboard - HR Sync</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "surface-container-highest": "#e4e2e4",
+                                                "tertiary": "#000000",
+                                                "surface-tint": "#565e74",
+                                                "secondary-container": "#2170e4",
+                                                "on-secondary-fixed": "#001a42",
+                                                "on-tertiary-fixed": "#271901",
+                                                "inverse-on-surface": "#f3f0f2",
+                                                "secondary-fixed": "#d8e2ff",
+                                                "on-primary-container": "#7c839b",
+                                                "background": "#fcf8fa",
+                                                "tertiary-fixed-dim": "#dec29a",
+                                                "surface-container-high": "#eae7e9",
+                                                "primary-fixed": "#dae2fd",
+                                                "on-background": "#1b1b1d",
+                                                "inverse-primary": "#bec6e0",
+                                                "inverse-surface": "#303032",
+                                                "surface-bright": "#fcf8fa",
+                                                "on-tertiary-fixed-variant": "#574425",
+                                                "on-surface": "#1b1b1d",
+                                                "on-primary-fixed": "#131b2e",
+                                                "secondary": "#0058be",
+                                                "surface-container-low": "#f6f3f5",
+                                                "on-error-container": "#93000a",
+                                                "error": "#ba1a1a",
+                                                "on-primary-fixed-variant": "#3f465c",
+                                                "on-tertiary": "#ffffff",
+                                                "on-secondary-fixed-variant": "#004395",
+                                                "on-surface-variant": "#45464d",
+                                                "surface-container-lowest": "#ffffff",
+                                                "surface": "#fcf8fa",
+                                                "tertiary-fixed": "#fcdeb5",
+                                                "primary-container": "#131b2e",
+                                                "primary-fixed-dim": "#bec6e0",
+                                                "on-tertiary-container": "#98805d",
+                                                "surface-variant": "#e4e2e4",
+                                                "on-secondary-container": "#fefcff",
+                                                "outline-variant": "#c6c6cd",
+                                                "primary": "#000000",
+                                                "tertiary-container": "#271901",
+                                                "outline": "#76777d",
+                                                "on-primary": "#ffffff",
+                                                "error-container": "#ffdad6",
+                                                "on-secondary": "#ffffff",
+                                                "surface-dim": "#dcd9db",
+                                                "on-error": "#ffffff",
+                                                "secondary-fixed-dim": "#adc6ff",
+                                                "surface-container": "#f0edef"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "container-margin": "32px",
+                                                "sm": "8px",
+                                                "xl": "32px",
+                                                "xs": "4px",
+                                                "base": "4px",
+                                                "lg": "24px",
+                                                "md": "16px",
+                                                "gutter": "20px"
+                                        },
+                                        "fontFamily": {
+                                                "headline-md": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Inter"
+                                                ],
+                                                "label-md": [
+                                                        "Inter"
+                                                ],
+                                                "headline-lg": [
+                                                        "Inter"
+                                                ],
+                                                "data-table": [
+                                                        "Inter"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "headline-md": [
+                                                        "20px",
+                                                        {
+                                                                "lineHeight": "28px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "36px",
+                                                        {
+                                                                "lineHeight": "44px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "28px",
+                                                        {
+                                                                "lineHeight": "36px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "data-table": [
+                                                        "13px",
+                                                        {
+                                                                "lineHeight": "18px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                body {
+                        font-family: 'Inter', sans-serif;
+                }
+        </style>
+</head>
+
+<body class="bg-surface text-on-surface flex min-h-screen">
+        <!-- SideNavBar -->
+        <nav
+                class="hidden lg:flex flex-col h-full py-lg px-md gap-sm fixed left-0 top-0 h-full w-60 border-r border-outline-variant dark:border-outline bg-surface-bright dark:bg-surface-container z-50">
+                <div class="px-md mb-lg">
+                        <a href="{{ url_for('employee_dashboard') }}" class="flex items-center gap-md">
+                                <div
+                                        class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-on-secondary-container"
+                                                data-icon="corporate_fare">corporate_fare</span>
+                                </div>
+                                <div>
+                                        <h1
+                                                class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">
+                                                HR Sync</h1>
+                                        <p class="text-label-md font-label-md text-on-surface-variant">Employee Portal
+                                        </p>
+                                </div>
+                        </a>
+                </div>
+                <div class="flex-1 flex flex-col gap-sm overflow-y-auto">
+                        <a class="flex items-center gap-md bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-lg px-md py-sm scale-[0.98] transition-transform duration-200 shadow-sm"
+                                href="{{ url_for('employee_dashboard') }}">
+                                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                                <span class="text-label-md font-label-md font-medium">Dashboard</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+                                href="{{ url_for('employee_attendance') }}">
+                                <span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+                                        data-icon="calendar_today">calendar_today</span>
+                                <span class="text-label-md font-label-md">Attendance</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+                                href="{{ url_for('employee_leave') }}">
+                                <span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+                                        data-icon="event_busy">event_busy</span>
+                                <span class="text-label-md font-label-md">Leave Management</span>
+                        </a>
+                </div>
+                <div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md">
+                        <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+                                href="{{ url_for('employee_profile') }}">
+                                <span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+                                        data-icon="settings">settings</span>
+                                <span class="text-label-md font-label-md">Settings</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg"
+                                href="{{ url_for('login') }}">
+                                <span class="material-symbols-outlined" data-icon="help">help</span>
+                                <span class="text-label-md font-label-md">Help</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg"
+                                href="{{ url_for('login') }}">
+                                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                                <span class="text-label-md font-label-md">Logout</span>
+                        </a>
+                </div>
+        </nav>
+        <!-- Main Content Canvas -->
+        <main class="flex-1 lg:ml-60 pt-16 px-md lg:px-lg pb-xl min-h-screen">
+                <!-- TopNavBar -->
+                <header
+                        class="fixed top-0 left-0 lg:left-60 w-full lg:w-[calc(100%-240px)] z-40 flex justify-between items-center px-lg h-16 border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none bg-surface dark:bg-surface-container-high">
+                        <div class="flex items-center gap-md lg:hidden">
+                                <a href="{{ url_for('employee_dashboard') }}"
+                                        class="text-headline-md font-headline-md font-bold text-primary dark:text-on-primary-fixed">HR
+                                        Sync</a>
+                        </div>
+                        <div class="hidden lg:flex items-center">
+                                <h2 class="text-headline-md font-headline-md font-bold text-on-surface">Good morning,
+                                        {{ employee.name.split(' ')[0] if employee else 'Abhilash' }} · {{
+                                        today_record.date_formatted if (today_record and today_record.date_formatted)
+                                        else 'Today' }}</h2>
+                        </div>
+                        <div class="flex items-center gap-sm">
+                                <button
+                                        class="p-2 text-secondary dark:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full flex items-center justify-center opacity-80 duration-150">
+                                        <span class="material-symbols-outlined"
+                                                data-icon="notifications">notifications</span>
+                                </button>
+                                <a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all rounded-lg"
+                                        href="{{ url_for('login') }}">
+                                        <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                                        <span class="text-label-md font-label-md">Logout</span>
+                                </a>
+                                <div
+                                        class="relative flex items-center gap-sm ml-sm pl-sm border-l border-outline-variant">
+                                        <span id="topbar-status-badge"
+                                                class="inline-flex items-center justify-center px-2 py-1 rounded-full {{ 'bg-emerald-100 text-emerald-800' if is_checked_in else 'bg-rose-100 text-rose-800' }} text-label-md font-label-md">
+                                                <span
+                                                        class="w-1.5 h-1.5 rounded-full {{ 'bg-emerald-600' if is_checked_in else 'bg-rose-600' }} mr-1"></span>{{
+                                                'Checked in' if is_checked_in else 'Not checked in' }}
+                                        </span>
+                                        <a href="{{ url_for('employee_profile') }}" title="My Profile" class="block">
+                                                <img alt="User profile avatar"
+                                                        class="w-8 h-8 rounded-full object-cover shadow-sm border border-outline-variant hover:ring-2 hover:ring-secondary/50 transition-all"
+                                                        data-alt="A professional headshot of employee Abhilash Bhunia."
+                                                        src="{{ employee.avatar if (employee and employee.avatar) else url_for('static', filename='images/abhilash_avatar.jpg') }}" />
+                                        </a>
+                                </div>
+                        </div>
+                </header>
+                <!-- Dashboard Content -->
+                <div class="mt-8 max-w-6xl mx-auto space-y-lg flex flex-col xl:flex-row gap-lg">
+                        <div class="flex-1 space-y-lg">
+                                <!-- Hero Action Area -->
+                                <!-- Hero Action Area -->
+                                <div id="checkin-card" data-checked-in="{{ 'true' if is_checked_in else 'false' }}"
+                                        data-checkin-iso="{{ today_record.check_in.isoformat() if today_record and today_record.check_in else '' }}"
+                                        data-duty-seconds="{{ today_duty_seconds }}"
+                                        class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-lg">
+                                        <div>
+                                                <h3 id="checkin-status-label"
+                                                        class="text-headline-lg font-headline-lg text-on-surface mb-sm">
+                                                        {{ 'Checked In' if is_checked_in else ('Checked Out' if
+                                                        (today_record and today_record.check_out) else 'Not Checked In')
+                                                        }}</h3>
+                                                <div id="checkin-timer"
+                                                        class="text-display-lg font-display-lg text-primary font-mono tracking-wider">
+                                                        --:--:--</div>
+                                                <div class="flex items-center gap-1.5 mt-2 text-on-surface-variant text-label-md font-label-md">
+                                                        <span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+                                                        <span>Office Timing: <strong class="text-on-surface font-semibold">09:00 AM – 06:00 PM</strong></span>
+                                                </div>
+                                        </div>
+                                        <button id="checkin-btn" onclick="toggleCheckIn()"
+                                                class="{{ 'bg-error text-on-error hover:bg-error/90' if is_checked_in else 'bg-secondary text-on-secondary hover:bg-secondary/90' }} px-8 py-4 rounded-lg text-body-lg font-body-lg font-semibold hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm flex items-center gap-md w-full md:w-auto justify-center cursor-pointer">
+                                                <span class="material-symbols-outlined"
+                                                        data-icon="fingerprint">fingerprint</span>
+                                                <span id="checkin-btn-label">{{ 'Check Out' if is_checked_in else 'Check
+                                                        In' }}</span>
+                                        </button>
+                                </div>
+                                <script>
+                                                (function () {
+                                                        var card = document.getElementById('checkin-card');
+                                                        var isCheckedIn = card ? card.dataset.checkedIn === 'true' : false;
+                                                        var checkInIso = card ? (card.dataset.checkinIso || '') : '';
+                                                        var initialDutySeconds = card ? (parseInt(card.dataset.dutySeconds, 10) || 0) : 0;
+                                                        var timerInterval = null;
+
+                                                        function pad(n) { return String(n).padStart(2, '0'); }
+
+                                                        function formatTime(s) {
+                                                                if (s < 0) s = 0;
+                                                                var h = Math.floor(s / 3600);
+                                                                var m = Math.floor((s % 3600) / 60);
+                                                                var sec = s % 60;
+                                                                return pad(h) + ':' + pad(m) + ':' + pad(sec);
+                                                        }
+
+                                                        function formatDutyHours(s) {
+                                                                if (s <= 0) return '0h 00m';
+                                                                var h = Math.floor(s / 3600);
+                                                                var m = Math.floor((s % 3600) / 60);
+                                                                return h + 'h ' + pad(m) + 'm';
+                                                        }
+
+                                                        function updateBadge(isIn) {
+                                                                var badge = document.getElementById('topbar-status-badge');
+                                                                if (!badge) return;
+                                                                if (isIn) {
+                                                                        badge.className = 'inline-flex items-center justify-center px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-label-md';
+                                                                        badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1"></span>Checked in';
+                                                                } else {
+                                                                        badge.className = 'inline-flex items-center justify-center px-2 py-1 rounded-full bg-rose-100 text-rose-800 text-label-md font-label-md';
+                                                                        badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-rose-600 mr-1"></span>Checked out';
+                                                                }
+                                                        }
+
+                                                        function startTimer(startTime) {
+                                                                if (timerInterval) clearInterval(timerInterval);
+                                                                var timer = document.getElementById('checkin-timer');
+                                                                var hoursSnap = document.getElementById('snapshot-hours');
+
+                                                                function tick() {
+                                                                        var elapsed = Math.floor((Date.now() - startTime.getTime()) / 1000);
+                                                                        if (elapsed < 0) elapsed = 0;
+                                                                        if (timer) timer.textContent = formatTime(elapsed);
+                                                                        if (hoursSnap) hoursSnap.textContent = formatDutyHours(elapsed);
+                                                                }
+
+                                                                tick();
+                                                                timerInterval = setInterval(tick, 1000);
+                                                        }
+
+                                                        // Initialize timer on page load if already checked in
+                                                        if (isCheckedIn && checkInIso) {
+                                                                var startDate = new Date(checkInIso);
+                                                                startTimer(startDate);
+                                                                updateBadge(true);
+                                                        } else if (initialDutySeconds > 0) {
+                                                                var timer = document.getElementById('checkin-timer');
+                                                                if (timer) timer.textContent = formatTime(initialDutySeconds);
+                                                        }
+
+                                                        window.toggleCheckIn = function () {
+                                                                var btn = document.getElementById('checkin-btn');
+                                                                var label = document.getElementById('checkin-btn-label');
+                                                                var statusLabel = document.getElementById('checkin-status-label');
+                                                                var checkinSnap = document.getElementById('snapshot-checkin');
+                                                                var checkoutSnap = document.getElementById('snapshot-checkout');
+                                                                var hoursSnap = document.getElementById('snapshot-hours');
+                                                                var statusContainer = document.getElementById('snapshot-status-container');
+
+                                                                btn.disabled = true;
+                                                                btn.style.opacity = '0.7';
+
+                                                                fetch('{{ url_for("api_attendance_toggle") }}', {
+                                                                        method: 'POST',
+                                                                        headers: { 'Content-Type': 'application/json' }
+                                                                })
+                                                                        .then(function (res) { return res.json(); })
+                                                                        .then(function (data) {
+                                                                                btn.disabled = false;
+                                                                                btn.style.opacity = '1';
+
+                                                                                if (!data.success) {
+                                                                                        alert(data.error || 'Attendance action failed');
+                                                                                        return;
+                                                                                }
+
+                                                                                if (data.checked_in) {
+                                                                                        isCheckedIn = true;
+                                                                                        statusLabel.textContent = 'Checked In';
+                                                                                        label.textContent = 'Check Out';
+                                                                                        btn.className = 'bg-error text-on-error hover:bg-error/90 px-8 py-4 rounded-lg text-body-lg font-body-lg font-semibold hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm flex items-center gap-md w-full md:w-auto justify-center cursor-pointer';
+                                                                                        if (checkinSnap) checkinSnap.textContent = data.check_in_time;
+                                                                                        if (checkoutSnap) checkoutSnap.textContent = '--:--';
+                                                                                        if (statusContainer) {
+                                                                                                statusContainer.innerHTML = '<span class="inline-flex items-center justify-center px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-label-md mt-1">Checked In</span>';
+                                                                                        }
+                                                                                        updateBadge(true);
+                                                                                        var startTime = data.check_in_iso ? new Date(data.check_in_iso) : new Date();
+                                                                                        startTimer(startTime);
+                                                                                } else {
+                                                                                        isCheckedIn = false;
+                                                                                        if (timerInterval) clearInterval(timerInterval);
+                                                                                        statusLabel.textContent = 'Checked Out';
+                                                                                        label.textContent = 'Check In';
+                                                                                        btn.className = 'bg-secondary text-on-secondary hover:bg-secondary/90 px-8 py-4 rounded-lg text-body-lg font-body-lg font-semibold hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm flex items-center gap-md w-full md:w-auto justify-center cursor-pointer';
+                                                                                        if (checkoutSnap) checkoutSnap.textContent = data.check_out_time;
+                                                                                        if (hoursSnap) hoursSnap.textContent = data.duty_hours;
+                                                                                        var timer = document.getElementById('checkin-timer');
+                                                                                        if (timer) timer.textContent = formatTime(data.duty_seconds);
+                                                                                        if (statusContainer) {
+                                                                                                statusContainer.innerHTML = '<span class="inline-flex items-center justify-center px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-label-md mt-1">Present</span>';
+                                                                                        }
+                                                                                        updateBadge(false);
+                                                                                }
+                                                                                // Seamlessly reload to update recent attendance table
+                                                                                setTimeout(function () { window.location.reload(); }, 600);
+                                                                        })
+                                                                        .catch(function (err) {
+                                                                                btn.disabled = false;
+                                                                                btn.style.opacity = '1';
+                                                                                console.error(err);
+                                                                        });
+                                                        };
+                                                })();
+                                </script>
+                                <!-- Today's Snapshot -->
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+                                        <div
+                                                class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-center">
+                                                <span class="text-label-md font-label-md text-on-surface-variant mb-1">Check-in
+                                                        time</span>
+                                                <span id="snapshot-checkin"
+                                                        class="text-headline-md font-headline-md text-on-surface">
+                                                        {{ today_record.check_in.strftime('%I:%M %p') if today_record
+                                                        and today_record.check_in else '--:--' }}
+                                                </span>
+                                        </div>
+                                        <div
+                                                class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-center">
+                                                <span class="text-label-md font-label-md text-on-surface-variant mb-1">Check-out
+                                                        time</span>
+                                                <span id="snapshot-checkout"
+                                                        class="text-headline-md font-headline-md text-on-surface {{ 'text-on-surface-variant/50' if not (today_record and today_record.check_out) else '' }}">
+                                                        {{ today_record.check_out.strftime('%I:%M %p') if today_record
+                                                        and today_record.check_out else '--:--' }}
+                                                </span>
+                                        </div>
+                                        <div
+                                                class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-center">
+                                                <span class="text-label-md font-label-md text-on-surface-variant mb-1">Hours
+                                                        worked today</span>
+                                                <span id="snapshot-hours"
+                                                        class="text-headline-md font-headline-md text-secondary font-bold">
+                                                        {{ today_duty_hours if (is_checked_in or (today_record and
+                                                        today_record.duty_seconds > 0)) else '--' }}
+                                                </span>
+                                        </div>
+                                        <div
+                                                class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 hover:border-secondary/40 hover:shadow-md transition-all flex flex-col justify-center">
+                                                <span
+                                                        class="text-label-md font-label-md text-on-surface-variant mb-1">Status</span>
+                                                <div id="snapshot-status-container">
+                                                        {% if is_checked_in %}
+                                                        <span
+                                                                class="inline-flex items-center justify-center px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-label-md mt-1 font-medium">Checked
+                                                                In</span>
+                                                        {% elif today_record and today_record.status %}
+                                                        <span
+                                                                class="inline-flex items-center justify-center px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-label-md mt-1 font-medium">{{
+                                                                today_record.status }}</span>
+                                                        {% else %}
+                                                        <span
+                                                                class="inline-flex items-center justify-center px-2 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-label-md font-label-md mt-1 font-medium">Not
+                                                                checked in</span>
+                                                        {% endif %}
+                                                </div>
+                                        </div>
+                                </div>
+                                <!-- Monthly Summary Section -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30">
+                                        <h4 class="text-headline-md font-headline-md text-on-surface mb-md">Monthly
+                                                Summary</h4>
+                                        <div class="grid grid-cols-2 md:grid-cols-5 gap-md">
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Total
+                                                                days present</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-primary">18</span>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Total
+                                                                hours worked</span>
+                                                        <span class="text-headline-md font-headline-md text-primary">142
+                                                                hrs</span>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Avg
+                                                                Check-in</span>
+                                                        <span class="text-headline-md font-headline-md text-primary">08:55
+                                                                AM</span>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Late
+                                                                Arrivals</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-amber-600">2</span>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Absences</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-rose-600">1</span>
+                                                </div>
+                                        </div>
+                                </div>
+                                <!-- Leave Balance -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-lg">
+                                        <div class="flex-1 w-full grid grid-cols-3 gap-md">
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Sick
+                                                                Leave</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-on-surface block mb-1">4
+                                                                / 12</span>
+                                                        <div class="w-full bg-surface-container rounded-full h-1.5">
+                                                                <div class="bg-secondary h-1.5 rounded-full"
+                                                                        style="width: 33%"></div>
+                                                        </div>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Casual
+                                                                Leave</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-on-surface block mb-1">8
+                                                                / 15</span>
+                                                        <div class="w-full bg-surface-container rounded-full h-1.5">
+                                                                <div class="bg-secondary h-1.5 rounded-full"
+                                                                        style="width: 53%"></div>
+                                                        </div>
+                                                </div>
+                                                <div>
+                                                        <span
+                                                                class="text-label-md font-label-md text-on-surface-variant block mb-1">Paid
+                                                                Leave</span>
+                                                        <span
+                                                                class="text-headline-md font-headline-md text-on-surface block mb-1">12
+                                                                / 20</span>
+                                                        <div class="w-full bg-surface-container rounded-full h-1.5">
+                                                                <div class="bg-secondary h-1.5 rounded-full"
+                                                                        style="width: 60%"></div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <a href="{{ url_for('employee_leave') }}"
+                                                class="bg-secondary-container text-on-secondary-container px-6 py-3 rounded-lg text-body-md font-body-md font-medium hover:bg-secondary/90 hover:shadow-md active:scale-[0.98] transition-all w-full md:w-auto shrink-0 flex items-center justify-center gap-2">
+                                                <span class="material-symbols-outlined text-[18px]">event_busy</span>
+                                                Apply for Leave
+                                        </a>
+                                </div>
+                                <!-- Recent Attendance Table -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30">
+                                        <h4 class="text-headline-md font-headline-md text-on-surface mb-md">Recent
+                                                Attendance</h4>
+                                        <div class="overflow-x-auto">
+                                                <table class="w-full text-left border-collapse">
+                                                        <thead>
+                                                                <tr
+                                                                        class="border-b border-outline-variant/50 text-label-md font-label-md text-on-surface-variant">
+                                                                        <th class="py-2 px-4 font-medium">Date</th>
+                                                                        <th class="py-2 px-4 font-medium">Check-in</th>
+                                                                        <th class="py-2 px-4 font-medium">Check-out</th>
+                                                                        <th class="py-2 px-4 font-medium">Hours</th>
+                                                                        <th class="py-2 px-4 font-medium">Status</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody class="text-body-md font-body-md">
+                                                                {% for rec in recent_records %}
+                                                                <tr
+                                                                        class="border-b border-outline-variant/30 hover:bg-secondary/5 transition-colors group cursor-pointer">
+                                                                        <td class="py-3 px-4 font-medium">{{
+                                                                                rec.date_formatted or rec.date }}</td>
+                                                                        <td class="py-3 px-4">{{
+                                                                                rec.check_in.strftime('%I:%M %p') if
+                                                                                rec.check_in else '--:--' }}</td>
+                                                                        <td class="py-3 px-4">{{
+                                                                                rec.check_out.strftime('%I:%M %p') if
+                                                                                rec.check_out else '--:--' }}</td>
+                                                                        <td
+                                                                                class="py-3 px-4 font-medium text-secondary">
+                                                                                {{ rec.duty_hours or '--' }}</td>
+                                                                        <td class="py-3 px-4">
+                                                                                {% if rec.status in ['Present', 'Checked
+                                                                                In'] %}
+                                                                                <span
+                                                                                        class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs font-medium">{{
+                                                                                        rec.status }}</span>
+                                                                                {% elif rec.status == 'Late' %}
+                                                                                <span
+                                                                                        class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-medium">Late</span>
+                                                                                {% elif rec.status == 'Incomplete' %}
+                                                                                <span
+                                                                                        class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-medium">Missing
+                                                                                        Checkout</span>
+                                                                                {% elif rec.status == 'Holiday' %}
+                                                                                <span
+                                                                                        class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Holiday</span>
+                                                                                {% else %}
+                                                                                <span
+                                                                                        class="bg-rose-100 text-rose-800 px-2 py-1 rounded-full text-xs font-medium">{{
+                                                                                        rec.status }}</span>
+                                                                                {% endif %}
+                                                                        </td>
+                                                                </tr>
+                                                                {% else %}
+                                                                <tr>
+                                                                        <td colspan="5"
+                                                                                class="py-4 text-center text-on-surface-variant">
+                                                                                No attendance records found.</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                        </tbody>
+                                                </table>
+                                        </div>
+                                        <div class="mt-4 text-center">
+                                                <a class="text-secondary text-label-md font-label-md hover:underline"
+                                                        href="{{ url_for('employee_attendance') }}">View full
+                                                        history</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- Alerts Sidebar -->
+                        <aside class="xl:w-80 flex flex-col gap-md">
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl p-md shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-outline-variant/30">
+                                        <div class="flex items-center gap-sm mb-md text-on-surface">
+                                                <span class="material-symbols-outlined"
+                                                        data-icon="notifications_active">notifications_active</span>
+                                                <h4 class="text-headline-md font-headline-md">Alerts &amp; Notifications
+                                                </h4>
+                                                <div class="flex flex-col gap-sm">
+                                                        <a href="{{ url_for('employee_leave') }}"
+                                                                class="bg-emerald-50 border border-emerald-200 rounded-lg p-3 hover:bg-emerald-100 transition-colors block group">
+                                                                <div class="flex items-start gap-2">
+                                                                        <span class="material-symbols-outlined text-emerald-600 text-sm mt-0.5"
+                                                                                data-icon="info">info</span>
+                                                                        <p
+                                                                                class="text-body-md font-body-md text-emerald-900 group-hover:underline">
+                                                                                Your leave request for Oct 12-14 was
+                                                                                approved.
+                                                                        </p>
+                                                                </div>
+                                                        </a>
+                                                        <a href="{{ url_for('employee_attendance') }}"
+                                                                class="bg-amber-50 border border-amber-200 rounded-lg p-3 hover:bg-amber-100 transition-colors block group">
+                                                                <div class="flex items-start gap-2">
+                                                                        <span class="material-symbols-outlined text-amber-600 text-sm mt-0.5"
+                                                                                data-icon="warning">warning</span>
+                                                                        <p
+                                                                                class="text-body-md font-body-md text-amber-900 group-hover:underline">
+                                                                                Missing checkout on Aug 28 — please
+                                                                                correct.</p>
+                                                                </div>
+                                                        </a>
+                                                </div>
+                                        </div>
+                        </aside>
+                </div>
+        </main>
+</body>
+
+</html>

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>HR Sync - Attendance Management</title>
+	<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+		rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+		rel="stylesheet">
+	<script id="tailwind-config">
+		tailwind.config = {
+			darkMode: "class",
+			theme: {
+				extend: {
+					"colors": {
+						"tertiary": "#000000",
+						"on-tertiary-container": "#98805d",
+						"surface-tint": "#565e74",
+						"background": "#fcf8fa",
+						"secondary": "#0058be",
+						"on-error": "#ffffff",
+						"on-tertiary-fixed-variant": "#574425",
+						"error-container": "#ffdad6",
+						"secondary-container": "#2170e4",
+						"on-surface-variant": "#45464d",
+						"on-secondary-fixed": "#001a42",
+						"surface-container-low": "#f6f3f5",
+						"tertiary-fixed": "#fcdeb5",
+						"on-primary-fixed-variant": "#3f465c",
+						"tertiary-fixed-dim": "#dec29a",
+						"primary-fixed-dim": "#bec6e0",
+						"surface-container-high": "#eae7e9",
+						"tertiary-container": "#271901",
+						"on-primary-container": "#7c839b",
+						"on-background": "#1b1b1d",
+						"surface-container-highest": "#e4e2e4",
+						"outline-variant": "#c6c6cd",
+						"primary-fixed": "#dae2fd",
+						"inverse-surface": "#303032",
+						"on-surface": "#1b1b1d",
+						"inverse-on-surface": "#f3f0f2",
+						"inverse-primary": "#bec6e0",
+						"secondary-fixed-dim": "#adc6ff",
+						"on-primary-fixed": "#131b2e",
+						"surface-container": "#f0edef",
+						"on-tertiary": "#ffffff",
+						"surface": "#fcf8fa",
+						"on-secondary": "#ffffff",
+						"on-tertiary-fixed": "#271901",
+						"error": "#ba1a1a",
+						"surface-dim": "#dcd9db",
+						"surface-variant": "#e4e2e4",
+						"surface-container-lowest": "#ffffff",
+						"outline": "#76777d",
+						"on-error-container": "#93000a",
+						"on-secondary-container": "#fefcff",
+						"primary-container": "#131b2e",
+						"secondary-fixed": "#d8e2ff",
+						"primary": "#000000",
+						"surface-bright": "#fcf8fa",
+						"on-primary": "#ffffff",
+						"on-secondary-fixed-variant": "#004395"
+					},
+					"borderRadius": {
+						"DEFAULT": "0.25rem",
+						"lg": "0.5rem",
+						"xl": "0.75rem",
+						"full": "9999px"
+					},
+					"spacing": {
+						"lg": "24px",
+						"gutter": "20px",
+						"base": "4px",
+						"md": "16px",
+						"container-margin": "32px",
+						"xs": "4px",
+						"sm": "8px",
+						"xl": "32px"
+					},
+					"fontFamily": {
+						"data-table": ["Inter"],
+						"body-md": ["Inter"],
+						"headline-lg": ["Inter"],
+						"label-md": ["Inter"],
+						"display-lg": ["Inter"],
+						"headline-md": ["Inter"],
+						"body-lg": ["Inter"]
+					},
+					"fontSize": {
+						"data-table": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+						"body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+						"headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+						"label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+						"display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+						"headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+						"body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+					}
+				}
+			}
+		}
+	</script>
+	<style>
+		.text-headline-md {
+			font-size: 20px;
+			line-height: 28px;
+			font-weight: 600;
+		}
+
+		.font-headline-md {
+			font-family: 'Inter', sans-serif;
+			font-weight: 600;
+		}
+
+		.text-body-md {
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: 400;
+		}
+
+		.font-body-md {
+			font-family: 'Inter', sans-serif;
+			font-weight: 400;
+		}
+
+		.text-label-md {
+			font-size: 12px;
+			line-height: 16px;
+			font-weight: 500;
+			letter-spacing: 0.05em;
+		}
+
+		.font-label-md {
+			font-family: 'Inter', sans-serif;
+			font-weight: 500;
+		}
+
+		.text-headline-sm {
+			font-size: 18px;
+			line-height: 24px;
+			font-weight: 600;
+		}
+
+		.font-headline-sm {
+			font-family: 'Inter', sans-serif;
+			font-weight: 700;
+		}
+
+		.text-data-table {
+			font-size: 13px;
+			line-height: 18px;
+			font-weight: 400;
+		}
+
+		.font-data-table {
+			font-family: 'Inter', sans-serif;
+			font-weight: 400;
+		}
+
+		.shadow-subtle {
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+		}
+	</style>
+</head>
+
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex font-body-md text-body-md antialiased">
+	<!-- Mobile Sidebar Backdrop -->
+	<div id="mobile-sidebar-backdrop" onclick="toggleMobileSidebar()"
+		class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity md:hidden"></div>
+
+	<!-- Mobile Sidebar Drawer -->
+	<aside id="mobile-sidebar"
+		class="fixed inset-y-0 left-0 w-[260px] bg-surface-bright border-r border-outline-variant z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col py-lg px-md gap-sm overflow-y-auto">
+		<div class="px-md mb-lg flex items-center justify-between">
+			<a href="{{ url_for('employee_dashboard') }}" class="flex items-center gap-md">
+				<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+					<span class="material-symbols-outlined text-on-secondary-container"
+						data-icon="corporate_fare">corporate_fare</span>
+				</div>
+				<div>
+					<h1 class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">HR Sync</h1>
+					<p class="text-label-md font-label-md text-on-surface-variant">Admin Portal</p>
+				</div>
+			</a>
+			<button onclick="toggleMobileSidebar()"
+				class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors">
+				<span class="material-symbols-outlined text-[20px]">close</span>
+			</button>
+		</div>
+		<div class="flex-1 flex flex-col gap-sm">
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_dashboard') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+				<span class="text-label-md font-label-md">Dashboard</span>
+			</a>
+			<!-- ACTIVE TAB -->
+			<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm scale-[0.98] transition-transform duration-200 shadow-sm relative overflow-hidden"
+				href="{{ url_for('hr_attendance') }}">
+				<span class="material-symbols-outlined filled">calendar_today</span>
+				<span class="text-label-md font-label-md font-bold">Attendance</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_leave') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">event_busy</span>
+				<span class="text-label-md font-label-md">Leave Management</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_directory') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">badge</span>
+				<span class="text-label-md font-label-md">Employee Directory</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_reports') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+				<span class="text-label-md font-label-md">Reports</span>
+			</a>
+		</div>
+		<div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md">
+			<a href="{{ url_for('hr_dashboard') }}#checkin-card"
+				class="w-full bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors py-sm px-md rounded-lg text-label-md font-label-md flex justify-center items-center gap-sm shadow-ambient-sm active:bg-secondary-fixed active:text-on-secondary-fixed">
+				<span class="material-symbols-outlined text-[18px]">touch_app</span> Check In/Out
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('hr_profile') }}">
+				<span class="material-symbols-outlined">person</span>
+				<span class="text-label-md font-label-md">My Profile</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('hr_profile') }}">
+				<span class="material-symbols-outlined">settings</span>
+				<span class="text-label-md font-label-md">Settings</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('login') }}">
+				<span class="material-symbols-outlined">logout</span>
+				<span class="text-label-md font-label-md">Logout</span>
+			</a>
+		</div>
+	</aside>
+
+	<!-- Desktop SideNavBar -->
+	<nav aria-label="Sidebar Navigation"
+		class="hidden md:flex flex-col h-screen py-lg px-md gap-sm bg-surface-bright border-r border-outline-variant fixed left-0 top-0 w-[240px] z-30 overflow-y-auto">
+		<div class="px-md mb-lg">
+			<a href="{{ url_for('employee_dashboard') }}" class="flex items-center gap-md">
+				<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+					<span class="material-symbols-outlined text-on-secondary-container"
+						data-icon="corporate_fare">corporate_fare</span>
+				</div>
+				<div>
+					<h1 class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">HR Sync</h1>
+					<p class="text-label-md font-label-md text-on-surface-variant">Admin Portal</p>
+				</div>
+			</a>
+		</div>
+		<div class="flex-1 flex flex-col gap-sm">
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_dashboard') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+				<span class="text-label-md font-label-md">Dashboard</span>
+			</a>
+			<!-- ACTIVE TAB -->
+			<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm scale-[0.98] transition-transform duration-200 shadow-sm relative overflow-hidden"
+				href="{{ url_for('hr_attendance') }}">
+				<div class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity"></div>
+				<span class="material-symbols-outlined filled">calendar_today</span>
+				<span class="text-label-md font-label-md font-bold">Attendance</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_leave') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">event_busy</span>
+				<span class="text-label-md font-label-md">Leave Management</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_directory') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">badge</span>
+				<span class="text-label-md font-label-md">Employee Directory</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+				href="{{ url_for('hr_reports') }}">
+				<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+				<span class="text-label-md font-label-md">Reports</span>
+			</a>
+		</div>
+		<div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md">
+			<a href="{{ url_for('hr_dashboard') }}#checkin-card"
+				class="w-full bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors py-sm px-md rounded-lg text-label-md font-label-md flex justify-center items-center gap-sm shadow-ambient-sm active:bg-secondary-fixed active:text-on-secondary-fixed">
+				<span class="material-symbols-outlined text-[18px]">touch_app</span> Check In/Out
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('hr_profile') }}">
+				<span class="material-symbols-outlined">person</span>
+				<span class="text-label-md font-label-md">My Profile</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('hr_profile') }}">
+				<span class="material-symbols-outlined">settings</span>
+				<span class="text-label-md font-label-md">Settings</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+				href="{{ url_for('login') }}">
+				<span class="material-symbols-outlined">logout</span>
+				<span class="text-label-md font-label-md">Logout</span>
+			</a>
+		</div>
+	</nav>
+
+	<!-- Main Content Area -->
+	<div class="flex-1 flex flex-col md:ml-60 h-screen overflow-hidden bg-background">
+		<!-- Top Bar Header (Desktop & Mobile) -->
+		<header
+			class="w-full flex justify-between items-center px-md lg:px-lg h-16 bg-surface border-b border-outline-variant shadow-sm shrink-0 z-30 sticky top-0">
+			<div class="flex items-center gap-md">
+				<button onclick="toggleMobileSidebar()"
+					class="md:hidden text-on-surface-variant hover:bg-surface-container p-2 rounded-lg transition-colors flex items-center justify-center">
+					<span class="material-symbols-outlined">menu</span>
+				</button>
+				<div>
+					<h2 class="text-headline-sm font-semibold text-primary hidden sm:block">Attendance Management</h2>
+					<div class="text-xs text-on-surface-variant hidden sm:block">Track, monitor, and adjust team attendance records</div>
+					<a href="{{ url_for('hr_dashboard') }}" class="text-headline-sm font-bold text-primary sm:hidden">HR Sync</a>
+				</div>
+			</div>
+
+			<div class="flex items-center gap-sm sm:gap-md">
+				<!-- Live status badge -->
+				<span id="topbar-status-badge"
+					class="inline-flex items-center justify-center px-2.5 py-1 rounded-full {{ 'bg-emerald-100 text-emerald-800' if is_checked_in else 'bg-rose-100 text-rose-800' }} text-label-md font-medium">
+					<span class="w-2 h-2 rounded-full {{ 'bg-emerald-600' if is_checked_in else 'bg-rose-600' }} mr-1.5 animate-pulse"></span>
+					{{ 'Checked In' if is_checked_in else 'Not Checked In' }}
+				</span>
+
+				<!-- Quick Check In/Out Button -->
+				<button onclick="quickToggleCheckin()" id="quick-checkin-btn"
+					class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 {{ 'bg-error text-on-error hover:bg-error/90' if is_checked_in else 'bg-secondary text-on-secondary hover:bg-secondary/90' }} rounded-lg text-label-md font-medium shadow-sm transition-all active:scale-95 cursor-pointer">
+					<span class="material-symbols-outlined text-[18px]">timer</span>
+					<span id="quick-checkin-text">{{ 'Check Out' if is_checked_in else 'Check In' }}</span>
+				</button>
+
+				<button class="p-2 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant"
+					title="Notifications">
+					<span class="material-symbols-outlined text-[20px]">notifications</span>
+				</button>
+
+				<a href="{{ url_for('hr_profile') }}"
+					class="p-2 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant" title="Settings">
+					<span class="material-symbols-outlined text-[20px]">settings</span>
+				</a>
+
+				<a href="{{ url_for('hr_profile') }}" class="flex items-center gap-2 pl-2 border-l border-outline-variant"
+					title="My Profile">
+					<img alt="User profile avatar"
+						class="w-8 h-8 rounded-full border border-outline-variant object-cover hover:ring-2 hover:ring-secondary/50 transition-all"
+						src="{{ url_for('static', filename='images/alex_mercer_avatar.jpg') }}">
+					<span class="text-label-md font-medium text-on-surface hidden lg:block">Alex Mercer</span>
+				</a>
+			</div>
+		</header>
+
+		<!-- Page Content Canvas -->
+		<main class="flex-1 overflow-y-auto p-md lg:p-lg bg-surface-container-lowest">
+			<div class="max-w-7xl mx-auto flex flex-col gap-lg pb-12">
+				<!-- Page Header & Actions -->
+				<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+					<div>
+						<h2 class="text-headline-lg font-headline-lg text-primary">Attendance History</h2>
+						<p class="text-body-md font-body-md text-on-surface-variant mt-1">Review team attendance, shifts, and
+							hours worked. Office timing: <span class="font-medium text-on-surface">09:00 AM – 06:00 PM</span>.</p>
+					</div>
+					<div class="flex items-center flex-wrap gap-sm">
+						<!-- Table / Calendar View Switcher -->
+						<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant shadow-sm">
+							<button id="view-table-btn" onclick="switchView('table')"
+								class="px-3 py-1.5 bg-surface text-secondary font-semibold rounded-md shadow-sm text-label-md font-label-md transition-all flex items-center gap-1">
+								<span class="material-symbols-outlined text-[18px]">table_rows</span>
+								Table
+							</button>
+							<button id="view-calendar-btn" onclick="switchView('calendar')"
+								class="px-3 py-1.5 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded-md text-label-md font-label-md transition-all flex items-center gap-1">
+								<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+								Calendar
+							</button>
+						</div>
+
+						<!-- Export CSV Button -->
+						<button onclick="exportTableToCSV()"
+							class="flex items-center gap-sm px-md py-sm bg-surface-variant text-on-surface-variant border border-outline-variant hover:border-secondary hover:text-secondary rounded-lg text-label-md font-label-md transition-all shadow-subtle cursor-pointer active:scale-95">
+							<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+							Export CSV
+						</button>
+					</div>
+				</div>
+
+				<!-- Summary Strip (Dynamic Database Metrics) -->
+				<div
+					class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-sm bg-surface-container-low rounded-xl p-md border border-outline-variant shadow-subtle">
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Total Records</span>
+						<span class="text-headline-md font-bold text-primary">{{ total_records }}</span>
+					</div>
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Present / In</span>
+						<span class="text-headline-md font-bold text-[#0284C7]">{{ present_count }}</span>
+					</div>
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Late Arrivals</span>
+						<span class="text-headline-md font-bold text-[#D97706]">{{ late_count }}</span>
+					</div>
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Incomplete</span>
+						<span class="text-headline-md font-bold text-[#DC2626]">{{ incomplete_count }}</span>
+					</div>
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Leaves / Holidays</span>
+						<span class="text-headline-md font-bold text-[#9333EA]">{{ holiday_count }}</span>
+					</div>
+					<div class="flex flex-col gap-xs p-2 rounded-lg bg-surface hover:shadow-sm transition-shadow">
+						<span class="text-label-md text-on-surface-variant">Total Hours Logged</span>
+						<span class="text-headline-md font-bold text-primary">{{ total_hours_formatted }}</span>
+					</div>
+				</div>
+
+				<!-- Filters Section -->
+				<div
+					class="bg-surface rounded-xl p-md border border-outline-variant shadow-subtle flex flex-col sm:flex-row flex-wrap gap-md items-end">
+					<!-- Employee Search Input -->
+					<div class="flex-1 min-w-[200px] flex flex-col gap-xs">
+						<label class="text-label-md font-label-md text-on-surface-variant font-medium">Search Employee</label>
+						<div class="relative group">
+							<span
+								class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-secondary text-[18px] transition-colors">search</span>
+							<input id="filter-search" oninput="applyFilters()"
+								class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+								placeholder="Search by name, ID, or dept..." type="text">
+						</div>
+					</div>
+
+					<!-- Filter by Employee Dropdown -->
+					<div class="flex-1 min-w-[170px] flex flex-col gap-xs">
+						<label class="text-label-md font-label-md text-on-surface-variant font-medium">Filter by Employee</label>
+						<div class="relative group">
+							<select id="filter-employee" onchange="applyFilters()"
+								class="w-full pl-4 pr-10 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer">
+								<option value="">All Employees</option>
+								{% for emp in all_employees %}
+								<option value="{{ emp.name }}">{{ emp.name }} ({{ emp.emp_code }})</option>
+								{% endfor %}
+							</select>
+							<span
+								class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none text-[18px]">arrow_drop_down</span>
+						</div>
+					</div>
+
+					<!-- Status Filter Dropdown -->
+					<div class="flex-1 min-w-[150px] flex flex-col gap-xs">
+						<label class="text-label-md font-label-md text-on-surface-variant font-medium">Status</label>
+						<div class="relative group">
+							<select id="filter-status" onchange="applyFilters()"
+								class="w-full pl-4 pr-10 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer">
+								<option value="">All Statuses</option>
+								<option value="Present">Present</option>
+								<option value="Checked In">Checked In</option>
+								<option value="Late">Late</option>
+								<option value="Incomplete">Incomplete</option>
+								<option value="Absent">Absent</option>
+								<option value="Holiday">Holiday</option>
+							</select>
+							<span
+								class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none text-[18px]">arrow_drop_down</span>
+						</div>
+					</div>
+
+					<!-- Reset Filters Button -->
+					<button onclick="resetFilters()"
+						class="px-4 py-2 border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary rounded-lg text-body-md font-medium transition-colors flex items-center gap-1">
+						<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+						Reset
+					</button>
+				</div>
+
+				<!-- VIEW 1: Data Table View -->
+				<div id="table-view"
+					class="bg-surface rounded-xl border border-outline-variant shadow-subtle overflow-hidden flex flex-col">
+					<div class="overflow-x-auto">
+						<table id="attendance-table" class="w-full text-left border-collapse">
+							<thead>
+								<tr class="bg-surface-container-low border-b border-outline-variant">
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Employee</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Date</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Check-in</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Check-out</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Working Hours</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Status</th>
+									<th class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+										Remarks</th>
+									<th
+										class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap text-right">
+										Action</th>
+								</tr>
+							</thead>
+							<tbody id="attendance-tbody"
+								class="text-data-table font-data-table text-on-surface divide-y divide-outline-variant">
+								{% for rec in records %}
+								<tr id="row-{{ rec.id }}"
+									data-employee="{{ rec.employee.name if rec.employee else '' }}"
+									data-empcode="{{ rec.employee.emp_code if rec.employee else '' }}"
+									data-dept="{{ rec.employee.department if rec.employee else '' }}"
+									data-status="{{ rec.status }}"
+									data-date="{{ rec.date }}"
+									class="hover:bg-secondary/5 transition-colors group attendance-row {{ 'bg-error-container/20' if rec.status == 'Incomplete' else '' }}">
+									<td class="py-sm px-4 whitespace-nowrap">
+										<div class="flex items-center gap-2">
+											<div
+												class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-bold text-xs">
+												{{ rec.employee.name[:2].upper() if rec.employee else 'NA' }}
+											</div>
+											<div>
+												<div class="font-medium text-on-surface">{{ rec.employee.name if rec.employee else 'Unknown' }}</div>
+												<div class="text-xs text-on-surface-variant">{{ rec.employee.department if rec.employee else '' }} • {{ rec.employee.emp_code if rec.employee else '' }}</div>
+											</div>
+										</div>
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap font-medium cell-date">
+										{{ rec.date_formatted or rec.date }}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap cell-checkin {{ 'text-error font-medium' if rec.status == 'Late' else '' }}">
+										{{ rec.check_in.strftime('%I:%M %p') if rec.check_in else '--:--' }}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap cell-checkout {{ 'text-error font-medium' if rec.status == 'Incomplete' else '' }}">
+										{{ rec.check_out.strftime('%I:%M %p') if rec.check_out else '--:--' }}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap font-medium text-secondary cell-hours">
+										{{ rec.duty_hours or '--' }}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap cell-status">
+										{% if rec.status in ['Present', 'Checked In'] %}
+										<span
+											class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[11px] font-medium tracking-wide">{{ rec.status }}</span>
+										{% elif rec.status == 'Late' %}
+										<span
+											class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#FEF08A] text-[#854D0E] text-[11px] font-medium tracking-wide">Late</span>
+										{% elif rec.status == 'Incomplete' %}
+										<span
+											class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[11px] font-medium tracking-wide">Incomplete</span>
+										{% elif rec.status == 'Holiday' %}
+										<span
+											class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-[11px] font-medium tracking-wide">Holiday</span>
+										{% else %}
+										<span
+											class="inline-flex items-center px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-medium tracking-wide">{{ rec.status }}</span>
+										{% endif %}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap text-on-surface-variant cell-remarks">
+										{{ rec.remarks or '-' }}
+									</td>
+									<td class="py-sm px-4 whitespace-nowrap text-right cell-action">
+										{% if rec.status in ['Incomplete', 'Late', 'Absent'] %}
+										<button type="button"
+											onclick="openReviewModal(this)"
+											data-id="{{ rec.id }}"
+											data-name="{{ rec.employee.name }}"
+											data-code="{{ rec.employee.emp_code }}"
+											data-date="{{ rec.date_formatted or rec.date }}"
+											data-checkin="{{ rec.check_in.strftime('%H:%M') if rec.check_in else '' }}"
+											data-checkout="{{ rec.check_out.strftime('%H:%M') if rec.check_out else '' }}"
+											data-status="{{ rec.status }}"
+											data-remarks="{{ rec.remarks or '' }}"
+											class="px-2.5 py-1 bg-secondary/10 text-secondary hover:bg-secondary hover:text-white rounded text-[12px] font-semibold transition-all">
+											Review
+										</button>
+										{% else %}
+										<button type="button"
+											onclick="openReviewModal(this)"
+											data-id="{{ rec.id }}"
+											data-name="{{ rec.employee.name }}"
+											data-code="{{ rec.employee.emp_code }}"
+											data-date="{{ rec.date_formatted or rec.date }}"
+											data-checkin="{{ rec.check_in.strftime('%H:%M') if rec.check_in else '' }}"
+											data-checkout="{{ rec.check_out.strftime('%H:%M') if rec.check_out else '' }}"
+											data-status="{{ rec.status }}"
+											data-remarks="{{ rec.remarks or '' }}"
+											class="text-on-surface-variant hover:text-secondary text-[12px] font-medium transition-colors">
+											Edit
+										</button>
+										{% endif %}
+									</td>
+								</tr>
+								{% else %}
+								<tr id="empty-row">
+									<td colspan="8" class="py-8 text-center text-on-surface-variant">
+										No attendance records found.
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Pagination Footer -->
+					<div
+						class="bg-surface border-t border-outline-variant p-sm px-md flex items-center justify-between text-label-md text-on-surface-variant">
+						<span id="record-counter">Showing {{ records|length }} of {{ records|length }} records</span>
+						<div class="flex items-center gap-xs">
+							<span class="text-xs text-on-surface-variant mr-2">Status updates sync immediately</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- VIEW 2: Interactive Calendar View -->
+				<div id="calendar-view"
+					class="bg-surface rounded-xl border border-outline-variant shadow-subtle p-md lg:p-lg hidden flex-col gap-md">
+					<div class="flex items-center justify-between">
+						<div>
+							<h3 id="cal-month-title" class="text-headline-md font-bold text-primary">September 2026</h3>
+							<p class="text-xs text-on-surface-variant">Daily team presence and shift distribution</p>
+						</div>
+						<div class="flex items-center gap-sm">
+							<span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+								<span class="w-2.5 h-2.5 rounded-full bg-[#0284C7]"></span> Present
+							</span>
+							<span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+								<span class="w-2.5 h-2.5 rounded-full bg-[#D97706]"></span> Late
+							</span>
+							<span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+								<span class="w-2.5 h-2.5 rounded-full bg-[#DC2626]"></span> Incomplete
+							</span>
+							<span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+								<span class="w-2.5 h-2.5 rounded-full bg-[#7E22CE]"></span> Holiday
+							</span>
+						</div>
+					</div>
+
+					<!-- Calendar Grid -->
+					<div class="grid grid-cols-7 gap-1 border border-outline-variant rounded-xl overflow-hidden bg-surface-container-low text-center">
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Sun</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Mon</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Tue</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Wed</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Thu</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Fri</div>
+						<div class="py-2 font-bold text-xs bg-surface-container-high text-on-surface-variant">Sat</div>
+						
+						<div id="calendar-days-container" class="contents">
+							<!-- Calendar days dynamically rendered by JavaScript -->
+						</div>
+					</div>
+
+					<!-- Selected Date Record Details Box in Calendar -->
+					<div id="cal-selected-day-box" class="p-md bg-surface-container-low rounded-xl border border-outline-variant hidden">
+						<h4 id="cal-selected-date-title" class="text-label-md font-bold text-primary mb-2">Records for Selected Date</h4>
+						<div id="cal-selected-records-list" class="flex flex-col gap-2"></div>
+					</div>
+				</div>
+
+			</div>
+		</main>
+	</div>
+
+	<!-- Review & Adjust Attendance Modal -->
+	<div id="review-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 hidden backdrop-blur-sm">
+		<div
+			class="bg-surface rounded-2xl max-w-md w-full border border-outline-variant shadow-2xl overflow-hidden">
+			<div class="p-md px-lg border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
+				<div>
+					<h3 class="font-headline-sm text-[18px] font-bold text-primary">Review Attendance Record</h3>
+					<p id="modal-emp-info" class="text-label-md text-on-surface-variant mt-0.5">Employee Info</p>
+				</div>
+				<button onclick="closeReviewModal()"
+					class="text-on-surface-variant hover:bg-surface-container p-1.5 rounded-full transition-colors">
+					<span class="material-symbols-outlined text-[20px]">close</span>
+				</button>
+			</div>
+			<form id="review-form" onsubmit="submitReview(event)" class="p-lg flex flex-col gap-md">
+				<input type="hidden" id="modal-record-id" name="record_id" value="">
+
+				<div class="flex items-center justify-between bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/60">
+					<span class="text-label-md text-on-surface-variant font-medium">Record Date:</span>
+					<span id="modal-record-date" class="font-semibold text-on-surface">--</span>
+				</div>
+
+				<div class="grid grid-cols-2 gap-sm">
+					<div class="flex flex-col gap-xs">
+						<label class="text-label-md font-medium text-on-surface-variant">Check-In Time</label>
+						<input type="time" id="modal-checkin-time"
+							class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
+					</div>
+					<div class="flex flex-col gap-xs">
+						<label class="text-label-md font-medium text-on-surface-variant">Check-Out Time</label>
+						<input type="time" id="modal-checkout-time"
+							class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
+					</div>
+				</div>
+
+				<div class="flex flex-col gap-xs">
+					<label class="text-label-md font-medium text-on-surface-variant">Status</label>
+					<select id="modal-status"
+						class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none cursor-pointer">
+						<option value="Present">Present (Regularized)</option>
+						<option value="Late">Late (Approved)</option>
+						<option value="Incomplete">Incomplete</option>
+						<option value="Absent">Absent</option>
+						<option value="Holiday">Holiday</option>
+					</select>
+				</div>
+
+				<div class="flex flex-col gap-xs">
+					<label class="text-label-md font-medium text-on-surface-variant">HR Adjustment Remarks</label>
+					<input type="text" id="modal-remarks" placeholder="e.g. Regularized by HR with manager approval"
+						class="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
+				</div>
+
+				<div id="modal-error-msg" class="text-error text-xs hidden"></div>
+
+				<div class="flex items-center justify-end gap-sm pt-sm border-t border-outline-variant">
+					<button type="button" onclick="closeReviewModal()"
+						class="px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg text-label-md font-medium transition-colors">
+						Cancel
+					</button>
+					<button type="submit" id="modal-submit-btn"
+						class="px-5 py-2 bg-secondary text-on-secondary hover:bg-secondary/90 rounded-lg text-label-md font-medium shadow-sm transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer">
+						<span class="material-symbols-outlined text-[16px]">check</span>
+						Save Changes
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Toast Notification Banner -->
+	<div id="toast-notification"
+		class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 px-4 py-3 bg-inverse-surface text-inverse-on-surface rounded-xl shadow-2xl flex items-center gap-2 text-body-md">
+		<span id="toast-icon" class="material-symbols-outlined text-emerald-400 text-[20px]">check_circle</span>
+		<span id="toast-text">Action completed successfully.</span>
+	</div>
+
+	<!-- Raw attendance data for client-side interactions & calendar -->
+	<script id="attendance-data" type="application/json">
+		[
+			{% for rec in records %}
+			{
+				"id": {{ rec.id }},
+				"employee": {{ (rec.employee.name if rec.employee else 'Unknown')|tojson }},
+				"empCode": {{ (rec.employee.emp_code if rec.employee else '')|tojson }},
+				"dept": {{ (rec.employee.department if rec.employee else '')|tojson }},
+				"date": {{ rec.date|tojson }},
+				"dateFormatted": {{ (rec.date_formatted or rec.date)|tojson }},
+				"checkIn": {{ (rec.check_in.strftime('%I:%M %p') if rec.check_in else '--:--')|tojson }},
+				"checkOut": {{ (rec.check_out.strftime('%I:%M %p') if rec.check_out else '--:--')|tojson }},
+				"checkInRaw": {{ (rec.check_in.strftime('%H:%M') if rec.check_in else '')|tojson }},
+				"checkOutRaw": {{ (rec.check_out.strftime('%H:%M') if rec.check_out else '')|tojson }},
+				"dutyHours": {{ (rec.duty_hours or '--')|tojson }},
+				"status": {{ rec.status|tojson }},
+				"remarks": {{ (rec.remarks or '-')|tojson }}
+			}{% if not loop.last %},{% endif %}
+			{% endfor %}
+		]
+	</script>
+
+	<script>
+		var attendanceData = [];
+		try {
+			var rawAttendanceElem = document.getElementById('attendance-data');
+			if (rawAttendanceElem && rawAttendanceElem.textContent.trim()) {
+				attendanceData = JSON.parse(rawAttendanceElem.textContent);
+			}
+		} catch (e) {
+			console.error('Failed to parse attendance data:', e);
+		}
+
+		// Mobile Sidebar Toggle
+		function toggleMobileSidebar() {
+			var sidebar = document.getElementById('mobile-sidebar');
+			var backdrop = document.getElementById('mobile-sidebar-backdrop');
+			var isHidden = sidebar.classList.contains('-translate-x-full');
+			if (isHidden) {
+				sidebar.classList.remove('-translate-x-full');
+				backdrop.classList.remove('hidden');
+			} else {
+				sidebar.classList.add('-translate-x-full');
+				backdrop.classList.add('hidden');
+			}
+		}
+
+		// Toast helper
+		function showToast(message, isSuccess) {
+			if (isSuccess === undefined) isSuccess = true;
+			var toast = document.getElementById('toast-notification');
+			var toastText = document.getElementById('toast-text');
+			var toastIcon = document.getElementById('toast-icon');
+			
+			toastText.textContent = message;
+			toastIcon.textContent = isSuccess ? 'check_circle' : 'error';
+			toastIcon.className = 'material-symbols-outlined text-[20px] ' + (isSuccess ? 'text-emerald-400' : 'text-rose-400');
+
+			toast.classList.remove('translate-y-20', 'opacity-0');
+			setTimeout(function () {
+				toast.classList.add('translate-y-20', 'opacity-0');
+			}, 3500);
+		}
+
+		// Quick Check In / Check Out via API
+		function quickToggleCheckin() {
+			var btn = document.getElementById('quick-checkin-btn');
+			var btnText = document.getElementById('quick-checkin-text');
+			var badge = document.getElementById('topbar-status-badge');
+
+			btn.disabled = true;
+			btn.style.opacity = '0.7';
+
+			fetch('{{ url_for("api_attendance_toggle") }}?emp_code=EMP-108', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ emp_code: 'EMP-108' })
+			})
+				.then(function (res) { return res.json(); })
+				.then(function (data) {
+					btn.disabled = false;
+					btn.style.opacity = '1';
+
+					if (!data.success) {
+						showToast(data.error || 'Check in/out failed', false);
+						return;
+					}
+
+					if (data.checked_in) {
+						btnText.textContent = 'Check Out';
+						btn.className = 'hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-error text-on-error hover:bg-error/90 rounded-lg text-label-md font-medium shadow-sm transition-all active:scale-95 cursor-pointer';
+						badge.className = 'inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-label-md font-medium';
+						badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-600 mr-1.5 animate-pulse"></span>Checked In';
+						showToast('Checked in successfully at ' + data.check_in_time);
+					} else {
+						btnText.textContent = 'Check In';
+						btn.className = 'hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary text-on-secondary hover:bg-secondary/90 rounded-lg text-label-md font-medium shadow-sm transition-all active:scale-95 cursor-pointer';
+						badge.className = 'inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-label-md font-medium';
+						badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-600 mr-1.5 animate-pulse"></span>Not Checked In';
+						showToast('Checked out at ' + data.check_out_time + ' (' + data.duty_hours + ')');
+					}
+
+					setTimeout(function () { window.location.reload(); }, 900);
+				})
+				.catch(function (err) {
+					btn.disabled = false;
+					btn.style.opacity = '1';
+					console.error(err);
+					showToast('Error connecting to server', false);
+				});
+		}
+
+		// Table Filtering
+		function applyFilters() {
+			var query = (document.getElementById('filter-search').value || '').toLowerCase().trim();
+			var empFilter = (document.getElementById('filter-employee').value || '').toLowerCase().trim();
+			var statusFilter = (document.getElementById('filter-status').value || '').toLowerCase().trim();
+
+			var rows = document.querySelectorAll('.attendance-row');
+			var visibleCount = 0;
+
+			rows.forEach(function (row) {
+				var emp = (row.dataset.employee || '').toLowerCase();
+				var code = (row.dataset.empcode || '').toLowerCase();
+				var dept = (row.dataset.dept || '').toLowerCase();
+				var status = (row.dataset.status || '').toLowerCase();
+
+				var matchQuery = !query || emp.includes(query) || code.includes(query) || dept.includes(query);
+				var matchEmp = !empFilter || emp.includes(empFilter);
+				var matchStatus = !statusFilter || status === statusFilter;
+
+				if (matchQuery && matchEmp && matchStatus) {
+					row.style.display = '';
+					visibleCount++;
+				} else {
+					row.style.display = 'none';
+				}
+			});
+
+			var counter = document.getElementById('record-counter');
+			if (counter) {
+				counter.textContent = 'Showing ' + visibleCount + ' of ' + rows.length + ' records';
+			}
+		}
+
+		function resetFilters() {
+			document.getElementById('filter-search').value = '';
+			document.getElementById('filter-employee').value = '';
+			document.getElementById('filter-status').value = '';
+			applyFilters();
+		}
+
+		// Table vs Calendar view switch
+		function switchView(view) {
+			var tableBtn = document.getElementById('view-table-btn');
+			var calBtn = document.getElementById('view-calendar-btn');
+			var tableView = document.getElementById('table-view');
+			var calView = document.getElementById('calendar-view');
+
+			if (view === 'calendar') {
+				tableView.classList.add('hidden');
+				calView.classList.remove('hidden');
+				calView.classList.add('flex');
+
+				tableBtn.className = 'px-3 py-1.5 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded-md text-label-md font-label-md transition-all flex items-center gap-1';
+				calBtn.className = 'px-3 py-1.5 bg-surface text-secondary font-semibold rounded-md shadow-sm text-label-md font-label-md transition-all flex items-center gap-1';
+
+				renderCalendar();
+			} else {
+				calView.classList.add('hidden');
+				calView.classList.remove('flex');
+				tableView.classList.remove('hidden');
+
+				tableBtn.className = 'px-3 py-1.5 bg-surface text-secondary font-semibold rounded-md shadow-sm text-label-md font-label-md transition-all flex items-center gap-1';
+				calBtn.className = 'px-3 py-1.5 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded-md text-label-md font-label-md transition-all flex items-center gap-1';
+			}
+		}
+
+		// Calendar Generator
+		function renderCalendar() {
+			var container = document.getElementById('calendar-days-container');
+			if (!container) return;
+			container.innerHTML = '';
+
+			// Use current date
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth();
+
+			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			document.getElementById('cal-month-title').textContent = monthNames[month] + ' ' + year;
+
+			var firstDay = new Date(year, month, 1).getDay(); // 0 is Sunday
+			var totalDays = new Date(year, month + 1, 0).getDate();
+
+			// Group records by YYYY-MM-DD
+			var recordsByDate = {};
+			attendanceData.forEach(function (rec) {
+				if (!recordsByDate[rec.date]) {
+					recordsByDate[rec.date] = [];
+				}
+				recordsByDate[rec.date].push(rec);
+			});
+
+			// Empty cells before day 1
+			for (var i = 0; i < firstDay; i++) {
+				var emptyCell = document.createElement('div');
+				emptyCell.className = 'min-h-[85px] p-1 bg-surface-container-lowest/30 border border-outline-variant/30 text-outline-variant opacity-40';
+				container.appendChild(emptyCell);
+			}
+
+			// Day cells
+			for (var d = 1; d <= totalDays; d++) {
+				var dayStr = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+				var dayRecords = recordsByDate[dayStr] || [];
+
+				var cell = document.createElement('div');
+				cell.className = 'min-h-[85px] p-1.5 bg-surface border border-outline-variant/40 hover:bg-secondary/5 transition-colors flex flex-col items-start justify-between cursor-pointer rounded-sm';
+				cell.dataset.date = dayStr;
+
+				var isToday = (d === now.getDate());
+				var dateNum = document.createElement('span');
+				dateNum.className = 'text-xs font-semibold ' + (isToday ? 'w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center' : 'text-on-surface');
+				dateNum.textContent = d;
+				cell.appendChild(dateNum);
+
+				// Indicators container
+				var indicatorWrap = document.createElement('div');
+				indicatorWrap.className = 'w-full flex flex-col gap-1 mt-1';
+
+				if (dayRecords.length > 0) {
+					dayRecords.slice(0, 2).forEach(function (r) {
+						var badge = document.createElement('div');
+						var bg = 'bg-sky-100 text-sky-800';
+						if (r.status === 'Late') bg = 'bg-amber-100 text-amber-800';
+						else if (r.status === 'Incomplete') bg = 'bg-rose-100 text-rose-800';
+						else if (r.status === 'Holiday') bg = 'bg-purple-100 text-purple-800';
+
+						badge.className = 'text-[10px] px-1 py-0.5 rounded truncate font-medium ' + bg;
+						badge.textContent = r.employee.split(' ')[0] + ' (' + r.dutyHours + ')';
+						indicatorWrap.appendChild(badge);
+					});
+
+					if (dayRecords.length > 2) {
+						var more = document.createElement('div');
+						more.className = 'text-[9px] text-on-surface-variant font-medium text-left';
+						more.textContent = '+' + (dayRecords.length - 2) + ' more';
+						indicatorWrap.appendChild(more);
+					}
+				}
+
+				cell.appendChild(indicatorWrap);
+
+				cell.onclick = (function (targetDate, records) {
+					return function () {
+						showDayDetails(targetDate, records);
+					};
+				})(dayStr, dayRecords);
+
+				container.appendChild(cell);
+			}
+		}
+
+		function showDayDetails(dateStr, records) {
+			var box = document.getElementById('cal-selected-day-box');
+			var title = document.getElementById('cal-selected-date-title');
+			var list = document.getElementById('cal-selected-records-list');
+
+			box.classList.remove('hidden');
+			title.textContent = 'Attendance for ' + dateStr + ' (' + records.length + ' records)';
+			list.innerHTML = '';
+
+			if (records.length === 0) {
+				list.innerHTML = '<div class="text-xs text-on-surface-variant italic">No attendance records logged for this day.</div>';
+				return;
+			}
+
+			records.forEach(function (r) {
+				var item = document.createElement('div');
+				item.className = 'flex items-center justify-between p-2 rounded-lg bg-surface border border-outline-variant/60 text-xs';
+				item.innerHTML = '<div><span class="font-semibold text-on-surface">' + r.employee + '</span> <span class="text-on-surface-variant">(' + r.empCode + ')</span></div>' +
+					'<div class="flex items-center gap-3"><span>In: ' + r.checkIn + '</span><span>Out: ' + r.checkOut + '</span><span class="font-semibold text-secondary">' + r.dutyHours + '</span><span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold">' + r.status + '</span></div>';
+				list.appendChild(item);
+			});
+		}
+
+		// Review Modal
+		function openReviewModal(idOrElem, empName, empCode, date, checkin, checkout, status, remarks) {
+			var id = idOrElem;
+			if (idOrElem && idOrElem.dataset) {
+				var d = idOrElem.dataset;
+				id = d.id;
+				empName = d.name;
+				empCode = d.code;
+				date = d.date;
+				checkin = d.checkin;
+				checkout = d.checkout;
+				status = d.status;
+				remarks = d.remarks;
+			}
+
+			document.getElementById('modal-record-id').value = id;
+			document.getElementById('modal-emp-info').textContent = empName + ' (' + empCode + ')';
+			document.getElementById('modal-record-date').textContent = date;
+			document.getElementById('modal-checkin-time').value = checkin || '';
+			document.getElementById('modal-checkout-time').value = checkout || '';
+			document.getElementById('modal-status').value = status || 'Present';
+			document.getElementById('modal-remarks').value = remarks || '';
+			document.getElementById('modal-error-msg').classList.add('hidden');
+
+			document.getElementById('review-modal').classList.remove('hidden');
+		}
+
+		function closeReviewModal() {
+			document.getElementById('review-modal').classList.add('hidden');
+		}
+
+		function submitReview(e) {
+			e.preventDefault();
+			var recordId = document.getElementById('modal-record-id').value;
+			var checkIn = document.getElementById('modal-checkin-time').value;
+			var checkOut = document.getElementById('modal-checkout-time').value;
+			var status = document.getElementById('modal-status').value;
+			var remarks = document.getElementById('modal-remarks').value;
+			var errorBox = document.getElementById('modal-error-msg');
+			var submitBtn = document.getElementById('modal-submit-btn');
+
+			submitBtn.disabled = true;
+			submitBtn.style.opacity = '0.7';
+			errorBox.classList.add('hidden');
+
+			fetch('{{ url_for("api_attendance_update") }}', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					record_id: parseInt(recordId, 10),
+					check_in: checkIn,
+					check_out: checkOut,
+					status: status,
+					remarks: remarks
+				})
+			})
+				.then(function (res) { return res.json(); })
+				.then(function (data) {
+					submitBtn.disabled = false;
+					submitBtn.style.opacity = '1';
+
+					if (!data.success) {
+						errorBox.textContent = data.error || 'Failed to update record.';
+						errorBox.classList.remove('hidden');
+						return;
+					}
+
+					closeReviewModal();
+					showToast('Attendance record #' + recordId + ' updated successfully!');
+
+					var row = document.getElementById('row-' + recordId);
+					if (row && data.record) {
+						row.dataset.status = data.record.status;
+						if (row.querySelector('.cell-checkin')) row.querySelector('.cell-checkin').textContent = data.record.check_in;
+						if (row.querySelector('.cell-checkout')) row.querySelector('.cell-checkout').textContent = data.record.check_out;
+						if (row.querySelector('.cell-hours')) row.querySelector('.cell-hours').textContent = data.record.duty_hours;
+						if (row.querySelector('.cell-remarks')) row.querySelector('.cell-remarks').textContent = data.record.remarks || '-';
+						
+						var statusCell = row.querySelector('.cell-status');
+						if (statusCell) {
+							var badgeHtml = '';
+							if (data.record.status === 'Present') {
+								badgeHtml = '<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[11px] font-medium tracking-wide">Present</span>';
+								row.classList.remove('bg-error-container/20');
+							} else if (data.record.status === 'Late') {
+								badgeHtml = '<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#FEF08A] text-[#854D0E] text-[11px] font-medium tracking-wide">Late</span>';
+							} else if (data.record.status === 'Incomplete') {
+								badgeHtml = '<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[11px] font-medium tracking-wide">Incomplete</span>';
+							} else {
+								badgeHtml = '<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-medium tracking-wide">' + data.record.status + '</span>';
+							}
+							statusCell.innerHTML = badgeHtml;
+						}
+					}
+
+					setTimeout(function () { window.location.reload(); }, 1000);
+				})
+				.catch(function (err) {
+					submitBtn.disabled = false;
+					submitBtn.style.opacity = '1';
+					console.error(err);
+					errorBox.textContent = 'Server connection error.';
+					errorBox.classList.remove('hidden');
+				});
+		}
+
+		// CSV Export
+		function exportTableToCSV() {
+			var rows = document.querySelectorAll('#attendance-table tr');
+			var csv = [];
+
+			for (var i = 0; i < rows.length; i++) {
+				if (rows[i].style.display === 'none') continue;
+				var row = [], cols = rows[i].querySelectorAll('td, th');
+
+				var limit = cols.length - 1;
+				for (var j = 0; j < limit; j++) {
+					var text = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, ' ').replace(/\s+/g, ' ').trim();
+					text = text.replace(/"/g, '""');
+					row.push('"' + text + '"');
+				}
+				csv.push(row.join(','));
+			}
+
+			var csvFile = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+			var downloadLink = document.createElement('a');
+			downloadLink.download = 'HR_Attendance_Report_' + new Date().toISOString().slice(0, 10) + '.csv';
+			downloadLink.href = window.URL.createObjectURL(csvFile);
+			downloadLink.style.display = 'none';
+			document.body.appendChild(downloadLink);
+			downloadLink.click();
+			document.body.removeChild(downloadLink);
+			showToast('Attendance report exported to CSV.');
+		}
+	</script>
+</body>
+
+</html>

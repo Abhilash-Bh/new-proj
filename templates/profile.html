@@ -1,0 +1,466 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>{% if portal == 'employee' or request.path.startswith('/employee') %}Employee Profile - HR Sync{% else %}HR Sync - Profile Settings{% endif %}</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "outline": "#76777d",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "on-surface-variant": "#45464d",
+                      "primary-fixed-dim": "#bec6e0",
+                      "inverse-primary": "#bec6e0",
+                      "inverse-surface": "#303032",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#000000",
+                      "on-tertiary-container": "#98805d",
+                      "on-surface": "#1b1b1d",
+                      "on-background": "#1b1b1d",
+                      "on-secondary-fixed-variant": "#004395",
+                      "primary-fixed": "#dae2fd",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "secondary": "#0058be",
+                      "on-primary-container": "#7c839b",
+                      "on-secondary-container": "#fefcff",
+                      "surface-container": "#f0edef",
+                      "surface-dim": "#dcd9db",
+                      "on-primary-fixed": "#131b2e",
+                      "surface-bright": "#fcf8fa",
+                      "secondary-fixed": "#d8e2ff",
+                      "tertiary-container": "#271901",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#fcf8fa",
+                      "surface": "#fcf8fa",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-tertiary-fixed": "#271901",
+                      "outline-variant": "#c6c6cd",
+                      "tertiary-fixed": "#fcdeb5",
+                      "tertiary": "#000000",
+                      "on-secondary-fixed": "#001a42",
+                      "inverse-on-surface": "#f3f0f2",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#2170e4",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e4e2e4",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "surface-container-high": "#eae7e9",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f6f3f5",
+                      "surface-variant": "#e4e2e4",
+                      "surface-tint": "#565e74"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "container-margin": "32px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "gutter": "20px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "data-table": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-table": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-container-high border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Toggle (Hidden on Desktop) -->
+<button class="md:hidden text-on-surface p-sm rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<a href="{% if portal == 'employee' or request.path.startswith('/employee') %}{{ url_for('employee_dashboard') }}{% else %}{{ url_for('hr_dashboard') }}{% endif %}" class="text-headline-md font-headline-md font-bold text-primary dark:text-on-primary-fixed">HR Sync</a>
+</div>
+<div class="flex items-center gap-md">
+<button aria-label="Notifications" class="text-on-surface-variant p-sm rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<a href="{% if portal == 'employee' or request.path.startswith('/employee') %}{{ url_for('employee_profile') }}{% else %}{{ url_for('hr_profile') }}{% endif %}" aria-label="Settings" class="text-on-surface-variant p-sm rounded-full hover:bg-surface-container-low transition-colors inline-flex items-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</a>
+<a href="{{ url_for('login') }}" aria-label="Logout" class="text-on-surface-variant p-sm rounded-full hover:bg-surface-container-low transition-colors inline-flex items-center">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</a>
+<a href="{% if portal == 'employee' or request.path.startswith('/employee') %}{{ url_for('employee_profile') }}{% else %}{{ url_for('hr_profile') }}{% endif %}" class="block" title="My Profile">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant ml-sm" data-alt="A professional male headshot avatar." src="{% if portal == 'employee' or request.path.startswith('/employee') %}{{ employee.avatar if (employee and employee.avatar) else url_for('static', filename='images/abhilash_avatar.jpg') }}{% else %}{{ url_for('static', filename='images/alex_mercer_avatar.jpg') }}{% endif %}">
+</a>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden lg:flex flex-col h-full py-lg px-md gap-sm bg-surface-bright dark:bg-surface-container border-r border-outline-variant dark:border-outline fixed left-0 top-0 w-60 z-30 pt-24 overflow-y-auto">
+{% if portal == 'employee' or request.path.startswith('/employee') %}
+<div class="mb-lg px-md">
+<div class="flex items-center gap-md mb-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<div>
+<h1 class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">HR Sync</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Employee Portal</p>
+</div>
+</div>
+</div>
+<a href="{{ url_for('employee_attendance') }}" class="w-full bg-secondary text-on-secondary py-sm px-md rounded-lg mb-lg font-label-md text-label-md hover:bg-secondary/90 hover:shadow-md active:scale-[0.98] transition-all shadow-sm text-center block font-medium">
+Check In/Out
+</a>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('employee_dashboard') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="dashboard">dashboard</span>
+Dashboard
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('employee_attendance') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="calendar_today">calendar_today</span>
+My Attendance
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('employee_leave') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="event_busy">event_busy</span>
+My Leaves
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant flex flex-col gap-xs">
+<a class="flex items-center gap-md bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-lg px-md py-sm transition-all font-label-md text-label-md scale-[0.98] shadow-sm font-medium" href="{{ url_for('employee_profile') }}">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+Settings
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md" href="{{ url_for('login') }}">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+Help
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md" href="{{ url_for('login') }}">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+Logout
+</a>
+</div>
+{% else %}
+<div class="mb-lg px-md">
+<h2 class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">HR Management</h2>
+<p class="text-label-md font-label-md text-on-surface-variant mt-xs">Admin Portal</p>
+</div>
+<a href="{{ url_for('hr_attendance') }}" class="w-full bg-secondary text-on-secondary py-sm px-md rounded-lg mb-lg font-label-md text-label-md hover:bg-secondary/90 hover:shadow-md active:scale-[0.98] transition-all shadow-sm text-center block font-medium">
+Check In/Out
+</a>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('hr_dashboard') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="dashboard">dashboard</span>
+Dashboard
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('hr_attendance') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="calendar_today">calendar_today</span>
+Attendance
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('hr_leave') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="event_busy">event_busy</span>
+Leave Management
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('hr_directory') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="badge">badge</span>
+Employee Directory
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md group" href="{{ url_for('hr_reports') }}">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors" data-icon="analytics">analytics</span>
+Reports
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant flex flex-col gap-xs">
+<a class="flex items-center gap-md bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-lg px-md py-sm transition-all font-label-md text-label-md scale-[0.98] shadow-sm font-medium" href="{{ url_for('hr_profile') }}">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+Settings
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg font-label-md text-label-md" href="{{ url_for('login') }}">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+Logout
+</a>
+</div>
+{% endif %}
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 lg:pl-64 p-lg max-w-7xl mx-auto min-h-screen">
+<header class="mb-xl flex items-center justify-between">
+<div>
+<h1 class="text-display-lg font-display-lg text-primary">Profile Settings</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-sm">Manage your personal information, security preferences, and notifications.</p>
+</div>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-xl">
+<!-- Left Column: Personal Info & Avatar -->
+<div class="xl:col-span-1 space-y-xl">
+<!-- Profile Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col items-center text-center">
+<div class="relative mb-md">
+{% if portal == 'employee' or request.path.startswith('/employee') %}
+<img alt="Large Profile Avatar" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-md" src="{{ employee.avatar if (employee and employee.avatar) else url_for('static', filename='images/abhilash_avatar.jpg') }}">
+{% else %}
+<img alt="Large Profile Avatar" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-md" src="{{ url_for('static', filename='images/alex_mercer_avatar.jpg') }}">
+{% endif %}
+<button aria-label="Edit Avatar" class="absolute bottom-0 right-0 bg-secondary text-on-secondary p-sm rounded-full hover:bg-secondary-container shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+</div>
+{% if portal == 'employee' or request.path.startswith('/employee') %}
+<h2 class="text-headline-md font-headline-md text-primary">{{ employee.name if employee else 'Abhilash Bhunia' }}</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-sm">{{ employee.email if employee else 'abhilash.bhunia@hrsync.com' }}</p>
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="work">work</span>
+{{ employee.designation if employee else 'Product Designer' }}
+</span>
+<p class="text-label-md font-label-md text-outline mt-md">Joined: September 1, 2022</p>
+{% else %}
+<h2 class="text-headline-md font-headline-md text-primary">Alex Mercer</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-sm">alex.mercer@hrsync.com</p>
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-md font-label-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="work">work</span>
+Senior HR Business Partner
+</span>
+<p class="text-label-md font-label-md text-outline mt-md">Joined: March 15, 2021</p>
+{% endif %}
+</section>
+<!-- Shift & Schedule Card -->
+<section class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<h3 class="text-headline-md font-headline-md text-primary m-0">Shift Schedule</h3>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant/30">
+<div class="font-body-lg text-body-lg text-primary font-medium mb-xs">Regular Shift</div>
+<div class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-[16px]">nest_clock_farsight_analog</span>
+09:00 AM - 06:00 PM
+</div>
+<div class="flex gap-xs">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">M</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">T</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">W</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">T</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">F</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-variant text-on-surface-variant font-label-md text-[10px]">S</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-variant text-on-surface-variant font-label-md text-[10px]">S</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Forms & Settings -->
+<div class="xl:col-span-2 space-y-xl">
+<!-- Personal Information Form Card -->
+<section class="bg-surface-container-lowest rounded-xl p-lg border border-outline-variant shadow-sm">
+<h3 class="text-headline-md font-headline-md text-primary mb-lg border-b border-outline-variant pb-sm">Personal Information</h3>
+<form method="POST" action="{% if portal == 'employee' or request.path.startswith('/employee') %}{{ url_for('employee_profile') }}{% else %}{{ url_for('hr_profile') }}{% endif %}" class="grid grid-cols-1 md:grid-cols-2 gap-md">
+{% if portal == 'employee' or request.path.startswith('/employee') %}
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="firstName">First Name</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="firstName" name="firstName" type="text" value="{{ employee.name.split(' ')[0] if employee else 'Abhilash' }}">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="lastName">Last Name</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="lastName" name="lastName" type="text" value="{{ employee.name.split(' ')[1] if (employee and employee.name.split(' ')|length > 1) else 'Bhunia' }}">
+</div>
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="email">Email Address</label>
+<input class="border border-outline-variant rounded-lg px-sm py-sm text-body-md font-body-md bg-surface-container-low text-on-surface-variant cursor-not-allowed" disabled="" id="email" type="email" value="{{ employee.email if employee else 'abhilash.bhunia@hrsync.com' }}">
+<p class="text-label-md font-label-md text-outline">Contact IT to change your email address.</p>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="department">Department</label>
+<div class="relative group">
+<select class="w-full border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm pr-10 focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none appearance-none cursor-pointer" id="department" name="department">
+<option value="hr">Human Resources</option>
+<option selected="" value="engineering">Design &amp; Engineering</option>
+<option value="sales">Sales</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant group-hover:text-secondary pointer-events-none text-[18px] transition-colors" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="phone">Phone Number</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="phone" name="phone" type="tel" value="{{ employee.phone if (employee and employee.phone) else '+1 (555) 234-5678' }}">
+</div>
+{% else %}
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="firstName">First Name</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="firstName" name="firstName" type="text" value="Alex">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="lastName">Last Name</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="lastName" name="lastName" type="text" value="Mercer">
+</div>
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="email">Email Address</label>
+<input class="border border-outline-variant rounded-lg px-sm py-sm text-body-md font-body-md bg-surface-container-low text-on-surface-variant cursor-not-allowed" disabled="" id="email" type="email" value="alex.mercer@hrsync.com">
+<p class="text-label-md font-label-md text-outline">Contact IT to change your email address.</p>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="department">Department</label>
+<div class="relative group">
+<select class="w-full border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm pr-10 focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none appearance-none cursor-pointer" id="department" name="department">
+<option selected="" value="hr">Human Resources</option>
+<option value="engineering">Engineering</option>
+<option value="sales">Sales</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant group-hover:text-secondary pointer-events-none text-[18px] transition-colors" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="phone">Phone Number</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="phone" name="phone" type="tel" value="+1 (555) 123-4567">
+</div>
+{% endif %}
+<div class="md:col-span-2 flex justify-end mt-sm">
+<button class="bg-secondary text-on-secondary py-sm px-lg rounded-lg font-label-md text-label-md hover:bg-secondary/90 hover:shadow-md active:scale-[0.98] transition-all shadow-sm font-medium" type="submit">
+Save Changes
+</button>
+</div>
+</form>
+</section>
+<!-- Security / Change Password Card -->
+<section class="bg-surface-container-lowest rounded-xl p-lg border border-outline-variant shadow-sm">
+<h3 class="text-headline-md font-headline-md text-primary mb-lg border-b border-outline-variant pb-sm">Security</h3>
+<form class="space-y-md">
+<div class="flex flex-col gap-xs max-w-md">
+<label class="text-label-md font-label-md text-on-surface-variant" for="currentPassword">Current Password</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="currentPassword" type="password">
+</div>
+<div class="flex flex-col gap-xs max-w-md">
+<label class="text-label-md font-label-md text-on-surface-variant" for="newPassword">New Password</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="newPassword" type="password">
+</div>
+<div class="flex flex-col gap-xs max-w-md">
+<label class="text-label-md font-label-md text-on-surface-variant" for="confirmPassword">Confirm New Password</label>
+<input class="border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-sm py-sm focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all text-body-md font-body-md bg-surface-container-lowest text-on-surface outline-none" id="confirmPassword" type="password">
+</div>
+<div class="flex justify-start mt-sm">
+<button class="bg-surface-variant text-on-surface hover:text-secondary hover:border-secondary/50 hover:bg-secondary/5 py-sm px-lg rounded-lg font-label-md text-label-md transition-all border border-outline-variant active:scale-[0.98] font-medium" type="button">
+                                Update Password
+                            </button>
+</div>
+</form>
+</section>
+<!-- Notification Preferences Card -->
+<section class="bg-surface-container-lowest rounded-xl p-lg border border-outline-variant shadow-sm">
+<h3 class="text-headline-md font-headline-md text-primary mb-lg border-b border-outline-variant pb-sm">Notification Preferences</h3>
+<div class="space-y-md">
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div>
+<p class="text-body-lg font-body-lg text-on-surface">Email Notifications</p>
+<p class="text-label-md font-label-md text-on-surface-variant">Receive daily summaries and urgent alerts via email.</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value="">
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-secondary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div>
+<p class="text-body-lg font-body-lg text-on-surface">Push Notifications</p>
+<p class="text-label-md font-label-md text-on-surface-variant">Receive real-time alerts on your devices.</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value="">
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-secondary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

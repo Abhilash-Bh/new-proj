@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+
+<head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>HR Sync - Attendance History</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "tertiary": "#000000",
+                                                "on-tertiary-container": "#98805d",
+                                                "surface-tint": "#565e74",
+                                                "background": "#fcf8fa",
+                                                "secondary": "#0058be",
+                                                "on-error": "#ffffff",
+                                                "on-tertiary-fixed-variant": "#574425",
+                                                "error-container": "#ffdad6",
+                                                "secondary-container": "#2170e4",
+                                                "on-surface-variant": "#45464d",
+                                                "on-secondary-fixed": "#001a42",
+                                                "surface-container-low": "#f6f3f5",
+                                                "tertiary-fixed": "#fcdeb5",
+                                                "on-primary-fixed-variant": "#3f465c",
+                                                "tertiary-fixed-dim": "#dec29a",
+                                                "primary-fixed-dim": "#bec6e0",
+                                                "surface-container-high": "#eae7e9",
+                                                "tertiary-container": "#271901",
+                                                "on-primary-container": "#7c839b",
+                                                "on-background": "#1b1b1d",
+                                                "surface-container-highest": "#e4e2e4",
+                                                "outline-variant": "#c6c6cd",
+                                                "primary-fixed": "#dae2fd",
+                                                "inverse-surface": "#303032",
+                                                "on-surface": "#1b1b1d",
+                                                "inverse-on-surface": "#f3f0f2",
+                                                "inverse-primary": "#bec6e0",
+                                                "secondary-fixed-dim": "#adc6ff",
+                                                "on-primary-fixed": "#131b2e",
+                                                "surface-container": "#f0edef",
+                                                "on-tertiary": "#ffffff",
+                                                "surface": "#fcf8fa",
+                                                "on-secondary": "#ffffff",
+                                                "on-tertiary-fixed": "#271901",
+                                                "error": "#ba1a1a",
+                                                "surface-dim": "#dcd9db",
+                                                "surface-variant": "#e4e2e4",
+                                                "surface-container-lowest": "#ffffff",
+                                                "outline": "#76777d",
+                                                "on-error-container": "#93000a",
+                                                "on-secondary-container": "#fefcff",
+                                                "primary-container": "#131b2e",
+                                                "secondary-fixed": "#d8e2ff",
+                                                "primary": "#000000",
+                                                "surface-bright": "#fcf8fa",
+                                                "on-primary": "#ffffff",
+                                                "on-secondary-fixed-variant": "#004395"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "lg": "24px",
+                                                "gutter": "20px",
+                                                "base": "4px",
+                                                "md": "16px",
+                                                "container-margin": "32px",
+                                                "xs": "4px",
+                                                "sm": "8px",
+                                                "xl": "32px"
+                                        },
+                                        "fontFamily": {
+                                                "data-table": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "headline-lg": [
+                                                        "Inter"
+                                                ],
+                                                "label-md": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Inter"
+                                                ],
+                                                "headline-md": [
+                                                        "Inter"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "data-table": [
+                                                        "13px",
+                                                        {
+                                                                "lineHeight": "18px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "28px",
+                                                        {
+                                                                "lineHeight": "36px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "36px",
+                                                        {
+                                                                "lineHeight": "44px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "20px",
+                                                        {
+                                                                "lineHeight": "28px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                /* Custom styles to handle specific tokens not perfectly covered by tailwind config extension */
+                .text-headline-md {
+                        font-size: 20px;
+                        line-height: 28px;
+                        font-weight: 600;
+                        letter-spacing: normal;
+                }
+
+                .font-headline-md {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                }
+
+                .text-body-md {
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 400;
+                        letter-spacing: normal;
+                }
+
+                .font-body-md {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                }
+
+                .text-label-md {
+                        font-size: 12px;
+                        line-height: 16px;
+                        font-weight: 500;
+                        letter-spacing: 0.05em;
+                }
+
+                .font-label-md {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 500;
+                }
+
+                .text-headline-sm {
+                        font-size: 18px;
+                        line-height: 24px;
+                        font-weight: 600;
+                }
+
+                /* Appoximated */
+                .font-headline-sm {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 900;
+                }
+
+                /* Set to black as per JSON brand logo */
+                .text-data-table {
+                        font-size: 13px;
+                        line-height: 18px;
+                        font-weight: 400;
+                }
+
+                .font-data-table {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 400;
+                }
+
+                .shadow-subtle {
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+                }
+        </style>
+</head>
+
+<body class="bg-background text-on-background h-full font-body-md flex overflow-hidden">
+        <!-- SideNavBar -->
+        <nav aria-label="Sidebar Navigation"
+                class="hidden lg:flex flex-col h-full py-lg px-md gap-sm bg-surface-bright border-r border-outline-variant fixed left-0 top-0 h-full w-60 z-30">
+                <!-- Header -->
+                <div class="px-md mb-lg">
+                        <a href="{{ url_for('employee_dashboard') }}" class="flex items-center gap-md">
+                                <div
+                                        class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-on-secondary-container"
+                                                data-icon="corporate_fare">corporate_fare</span>
+                                </div>
+                                <div>
+                                        <h1
+                                                class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">
+                                                HR Sync</h1>
+                                        <p class="text-label-md font-label-md text-on-surface-variant">Employee Portal</p>
+                                </div>
+                        </a>
+                </div>
+                <!-- CTA -->
+
+                		<!-- Navigation Links -->
+		<div class="flex-1 flex flex-col gap-sm overflow-y-auto">
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+				href="{{ url_for('employee_dashboard') }}">
+				<span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+					data-icon="dashboard">dashboard</span>
+				<span class="text-label-md font-label-md">Dashboard</span>
+			</a>
+			<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm hover:bg-secondary-container/90 transition-all scale-[0.98] duration-200 shadow-sm"
+				href="{{ url_for('employee_attendance') }}">
+				<span class="material-symbols-outlined" data-icon="calendar_today" data-weight="fill"
+					style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+				<span class="text-label-md font-label-md font-bold">Attendance</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+				href="{{ url_for('employee_leave') }}">
+				<span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+					data-icon="event_busy">event_busy</span>
+				<span class="text-label-md font-label-md">Leave Management</span>
+			</a>
+		</div>
+		<!-- Footer Links -->
+		<div class="mt-auto pt-md border-t border-outline-variant flex flex-col gap-sm">
+			<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg group"
+				href="{{ url_for('employee_profile') }}">
+				<span class="material-symbols-outlined group-hover:text-secondary transition-colors"
+					data-icon="settings">settings</span>
+				<span class="text-label-md font-label-md">Settings</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg"
+				href="{{ url_for('login') }}">
+				<span class="material-symbols-outlined" data-icon="help">help</span>
+				<span class="text-label-md font-label-md">Help</span>
+			</a>
+			<a class="flex items-center gap-md text-on-surface-variant dark:text-outline-variant px-md py-sm hover:bg-secondary-container/15 hover:text-secondary transition-all rounded-lg"
+				href="{{ url_for('login') }}">
+				<span class="material-symbols-outlined" data-icon="logout">logout</span>
+				<span class="text-label-md font-label-md">Logout</span>
+			</a>
+		</div>
+        </nav>
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col lg:ml-60 h-full overflow-hidden">
+                <!-- TopNavBar (Mobile mainly, but keeping structure as requested if needed for mobile responsiveness) -->
+                <header
+                        class="lg:hidden fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+                        <div class="flex items-center gap-md">
+                                <button
+                                        class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors">
+                                        <span class="material-symbols-outlined" data-icon="menu">menu</span>
+                                </button>
+                                <a href="{{ url_for('employee_dashboard') }}" class="text-headline-md font-headline-md font-bold text-primary">HR Sync</a>
+                        </div>
+                        <div class="flex items-center gap-sm">
+                                <button
+                                        class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors">
+                                        <span class="material-symbols-outlined"
+                                                data-icon="notifications">notifications</span>
+                                </button>
+                                <a href="{{ url_for('employee_profile') }}" title="My Profile" class="block">
+                                        <img alt="User profile avatar"
+                                                class="w-8 h-8 rounded-full border border-outline-variant object-cover hover:ring-2 hover:ring-secondary/50 transition-all"
+                                                data-alt="A professional headshot of employee Abhilash Bhunia."
+                                                src="{{ employee.avatar if (employee and employee.avatar) else url_for('static', filename='images/abhilash_avatar.jpg') }}">
+                                </a>
+                        </div>
+                </header>
+                <!-- Page Content Canvas -->
+                <main class="flex-1 overflow-y-auto p-md lg:p-lg pt-20 lg:pt-lg bg-surface-container-lowest">
+                        <div class="max-w-7xl mx-auto flex flex-col gap-lg">
+                                <!-- Page Header & Actions -->
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+                                        <div>
+                                                <h2 class="text-headline-lg font-headline-lg text-primary">Attendance
+                                                        History</h2>
+                                                <p class="text-body-md font-body-md text-on-surface-variant mt-1">Review
+                                                        your past attendance records and hours worked. Office timing: <span class="font-medium text-on-surface">09:00 AM – 06:00 PM</span>.</p>
+                                        </div>
+                                        					<div class="flex items-center gap-sm"><a href="{{ url_for('employee_dashboard') }}"
+							class="flex items-center gap-sm px-md py-sm bg-secondary text-on-secondary rounded-lg text-label-md font-label-md hover:bg-secondary/90 hover:shadow-md transition-all active:scale-[0.98] mr-2">
+							<span class="material-symbols-outlined text-[18px]">timer</span>
+							Check In/Out
+						</a>
+						<div
+							class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant mr-4">
+							<button
+								class="px-3 py-1.5 bg-surface text-secondary font-medium rounded-md shadow-sm text-label-md font-label-md transition-colors flex items-center gap-1">
+								<span
+									class="material-symbols-outlined text-[18px]">table_rows</span>
+								Table
+							</button>
+							<button
+								class="px-3 py-1.5 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded-md text-label-md font-label-md transition-colors flex items-center gap-1">
+								<span
+									class="material-symbols-outlined text-[18px]">calendar_month</span>
+								Calendar
+							</button>
+						</div>
+						<button
+							class="flex items-center gap-sm px-md py-sm bg-surface-variant text-on-surface-variant border border-outline-variant hover:border-secondary/50 hover:text-secondary hover:bg-secondary/5 rounded-lg text-label-md font-label-md transition-all active:scale-[0.98]">
+							<span class="material-symbols-outlined text-[18px]"
+								data-icon="download">download</span>
+							Export
+						</button>
+					</div>
+                                </div>
+                                <!-- Summary Strip -->
+                                <div
+                                        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-sm bg-surface-container-low rounded-xl p-md border border-outline-variant shadow-subtle">
+                                        <div class="flex flex-col gap-xs">
+                                                <span class="text-label-md text-on-surface-variant">Total Working
+                                                        Days</span>
+                                                <span class="text-headline-md font-bold text-primary">{{ total_working_days }}</span>
+                                        </div>
+                                        <div class="flex flex-col gap-xs">
+                                                <span class="text-label-md text-on-surface-variant">Days Present</span>
+                                                <span class="text-headline-md font-bold text-[#0284C7]">{{ days_present }}</span>
+                                        </div>
+                                        <div class="flex flex-col gap-xs">
+                                                <span class="text-label-md text-on-surface-variant">Days Absent</span>
+                                                <span class="text-headline-md font-bold text-[#DC2626]">{{ days_absent }}</span>
+                                        </div>
+                                        <div class="flex flex-col gap-xs">
+                                                <a href="{{ url_for('employee_leave') }}" class="flex flex-col gap-xs hover:opacity-80 transition-opacity">
+                                                        <span class="text-label-md text-on-surface-variant">Days on Leave</span>
+                                                        <span class="text-headline-md font-bold text-[#9333EA]">{{ days_leave }}</span>
+                                                </a>
+                                        </div>
+                                        <div class="flex flex-col gap-xs">
+                                                <span class="text-label-md text-on-surface-variant">Total Hours</span>
+                                                <span class="text-headline-md font-bold text-primary">{{ total_hours_formatted }}</span>
+                                        </div>
+                                        <div class="flex flex-col gap-xs">
+                                                <span class="text-label-md text-on-surface-variant">Late Count</span>
+                                                <span class="text-headline-md font-bold text-[#D97706]">{{ late_count }}</span>
+                                        </div>
+                                </div>
+                                				<!-- Filters Section (Glassmorphism/Minimalist Card) -->
+				<div
+					class="bg-surface rounded-xl p-md border border-outline-variant shadow-subtle flex flex-col sm:flex-row flex-wrap gap-md items-end">
+					<div class="flex-1 min-w-[150px] flex flex-col gap-xs">
+						<label
+							class="text-label-md font-label-md text-on-surface-variant font-medium">Month</label>
+						<div class="relative group">
+							<select
+								class="w-full pl-4 pr-10 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-container-lowest outline-none transition-all appearance-none cursor-pointer">
+								<option>October 2023</option>
+								<option>September 2023</option>
+								<option>August 2023</option>
+							</select>
+							<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant group-hover:text-secondary pointer-events-none text-[18px] transition-colors"
+								data-icon="arrow_drop_down">arrow_drop_down</span>
+						</div>
+					</div>
+					<div class="flex-1 min-w-[200px] flex flex-col gap-xs">
+						<label class="text-label-md font-label-md text-on-surface-variant font-medium">Date
+							Range</label>
+						<div class="relative group">
+							<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-hover:text-secondary text-[18px] transition-colors"
+								data-icon="date_range">date_range</span>
+							<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-container-lowest outline-none transition-all"
+								placeholder="Select dates..." type="text">
+						</div>
+					</div>
+					<div class="flex-1 min-w-[150px] flex flex-col gap-xs">
+						<label
+							class="text-label-md font-label-md text-on-surface-variant font-medium">Status</label>
+						<div class="relative group">
+							<select
+								class="w-full pl-4 pr-10 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg text-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-container-lowest outline-none transition-all appearance-none cursor-pointer">
+								<option>All Statuses</option>
+								<option>Present</option>
+								<option>Late</option>
+								<option>Absent</option>
+								<option>Half-day</option>
+								<option>Leave</option>
+							</select>
+							<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant group-hover:text-secondary pointer-events-none text-[18px] transition-colors"
+								data-icon="arrow_drop_down">arrow_drop_down</span>
+						</div>
+					</div>
+				</div>
+                                <!-- Data Table Section -->
+                                <div
+                                        class="bg-surface rounded-xl border border-outline-variant shadow-subtle overflow-hidden flex flex-col">
+                                        <div class="overflow-x-auto">
+                                                <table class="w-full text-left border-collapse">
+                                                        <thead>
+                                                                <tr
+                                                                        class="bg-surface-container-low border-b border-outline-variant">
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Date</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Check-in</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Check-out</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Working Hours</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Status</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap">
+                                                                                Remarks</th>
+                                                                        <th
+                                                                                class="py-3 px-4 text-label-md font-label-md text-on-surface-variant font-medium whitespace-nowrap text-right">
+                                                                                Action</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody
+                                                                class="text-data-table font-data-table text-on-surface divide-y divide-outline-variant">
+                                                                {% for rec in records %}
+                                                                <tr class="hover:bg-secondary/5 transition-colors group {{ 'bg-error-container/20' if rec.status == 'Incomplete' else '' }}">
+                                                                        <td class="py-sm px-4 whitespace-nowrap font-medium">{{ rec.date_formatted or rec.date }}</td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap {{ 'text-error font-medium' if rec.status == 'Late' else '' }}">{{ rec.check_in.strftime('%I:%M %p') if rec.check_in else '--:--' }}</td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap {{ 'text-error font-medium' if rec.status == 'Incomplete' else '' }}">{{ rec.check_out.strftime('%I:%M %p') if rec.check_out else '--:--' }}</td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap font-medium text-secondary">{{ rec.duty_hours or '--' }}</td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap">
+                                                                                {% if rec.status in ['Present', 'Checked In'] %}
+                                                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[11px] font-medium tracking-wide">{{ rec.status }}</span>
+                                                                                {% elif rec.status == 'Late' %}
+                                                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#FEF08A] text-[#854D0E] text-[11px] font-medium tracking-wide">Late</span>
+                                                                                {% elif rec.status == 'Incomplete' %}
+                                                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[11px] font-medium tracking-wide">Incomplete</span>
+                                                                                {% elif rec.status == 'Holiday' %}
+                                                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#F3E8FF] text-[#7E22CE] text-[11px] font-medium tracking-wide">Holiday</span>
+                                                                                {% else %}
+                                                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-medium tracking-wide">{{ rec.status }}</span>
+                                                                                {% endif %}
+                                                                        </td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap text-on-surface-variant">{{ rec.remarks or '-' }}</td>
+                                                                        <td class="py-sm px-4 whitespace-nowrap text-right">
+                                                                                {% if rec.status in ['Incomplete', 'Late'] %}
+                                                                                <button class="text-secondary hover:text-secondary-container hover:underline text-[12px] font-medium transition-colors">Request Correction</button>
+                                                                                {% else %}
+                                                                                -
+                                                                                {% endif %}
+                                                                        </td>
+                                                                </tr>
+                                                                {% else %}
+                                                                <tr>
+                                                                        <td colspan="7" class="py-6 text-center text-on-surface-variant">No attendance records found.</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                        </tbody>
+                                                </table>
+                                        </div>
+                                        <!-- Pagination Footer -->
+                                        <div
+                                                class="bg-surface border-t border-outline-variant p-sm px-md flex items-center justify-between text-label-md text-on-surface-variant">
+                                                <span class="">Showing 1 to 5 of 31 records</span>
+                                                <div class="flex items-center gap-xs">
+                                                        <button class="p-xs hover:bg-surface-container-highest rounded transition-colors disabled:opacity-50"
+                                                                disabled="">
+                                                                <span class="material-symbols-outlined text-[18px]"
+                                                                        data-icon="chevron_left">chevron_left</span>
+                                                        </button>
+                                                        <span
+                                                                class="px-sm py-xs bg-surface-container-highest rounded">1</span>
+                                                        <span
+                                                                class="px-sm py-xs hover:bg-surface-container-lowest rounded cursor-pointer transition-colors">2</span>
+                                                        <span
+                                                                class="px-sm py-xs hover:bg-surface-container-lowest rounded cursor-pointer transition-colors">3</span>
+                                                        <button
+                                                                class="p-xs hover:bg-surface-container-highest rounded transition-colors">
+                                                                <span class="material-symbols-outlined text-[18px]"
+                                                                        data-icon="chevron_right">chevron_right</span>
+                                                        </button>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </main>
+        </div>
+
+
+</body>
+
+</html>

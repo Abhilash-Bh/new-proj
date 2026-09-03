@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>HR Sync - Attendance Reports</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-secondary-container": "#fefcff",
+                                                "on-primary-container": "#7c839b",
+                                                "surface-container": "#f0edef",
+                                                "secondary-fixed-dim": "#adc6ff",
+                                                "on-tertiary-fixed": "#271901",
+                                                "surface-variant": "#e4e2e4",
+                                                "surface-container-lowest": "#ffffff",
+                                                "on-primary-fixed-variant": "#3f465c",
+                                                "surface-tint": "#565e74",
+                                                "surface": "#fcf8fa",
+                                                "error": "#ba1a1a",
+                                                "secondary-fixed": "#d8e2ff",
+                                                "on-surface-variant": "#45464d",
+                                                "surface-container-high": "#eae7e9",
+                                                "error-container": "#ffdad6",
+                                                "on-primary": "#ffffff",
+                                                "secondary-container": "#2170e4",
+                                                "surface-dim": "#dcd9db",
+                                                "on-background": "#1b1b1d",
+                                                "background": "#fcf8fa",
+                                                "on-secondary": "#ffffff",
+                                                "primary-fixed": "#dae2fd",
+                                                "outline-variant": "#c6c6cd",
+                                                "on-surface": "#1b1b1d",
+                                                "on-error": "#ffffff",
+                                                "on-tertiary": "#ffffff",
+                                                "primary": "#000000",
+                                                "on-primary-fixed": "#131b2e",
+                                                "on-secondary-fixed": "#001a42",
+                                                "on-secondary-fixed-variant": "#004395",
+                                                "on-error-container": "#93000a",
+                                                "secondary": "#0058be",
+                                                "tertiary-container": "#271901",
+                                                "tertiary": "#000000",
+                                                "inverse-primary": "#bec6e0",
+                                                "surface-container-highest": "#e4e2e4",
+                                                "primary-container": "#131b2e",
+                                                "inverse-surface": "#303032",
+                                                "primary-fixed-dim": "#bec6e0",
+                                                "tertiary-fixed": "#fcdeb5",
+                                                "inverse-on-surface": "#f3f0f2",
+                                                "surface-container-low": "#f6f3f5",
+                                                "on-tertiary-fixed-variant": "#574425",
+                                                "surface-bright": "#fcf8fa",
+                                                "tertiary-fixed-dim": "#dec29a",
+                                                "outline": "#76777d",
+                                                "on-tertiary-container": "#98805d"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "xl": "32px",
+                                                "container-margin": "32px",
+                                                "md": "16px",
+                                                "lg": "24px",
+                                                "base": "4px",
+                                                "sm": "8px",
+                                                "gutter": "20px",
+                                                "xs": "4px"
+                                        },
+                                        "fontFamily": {
+                                                "display-lg": [
+                                                        "Inter"
+                                                ],
+                                                "headline-md": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "data-table": [
+                                                        "Inter"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "label-md": [
+                                                        "Inter"
+                                                ],
+                                                "headline-lg": [
+                                                        "Inter"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "display-lg": [
+                                                        "36px",
+                                                        {
+                                                                "lineHeight": "44px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "20px",
+                                                        {
+                                                                "lineHeight": "28px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "data-table": [
+                                                        "13px",
+                                                        {
+                                                                "lineHeight": "18px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "28px",
+                                                        {
+                                                                "lineHeight": "36px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .material-symbols-outlined {
+                        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+
+                .material-symbols-outlined.filled {
+                        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+
+                .shadow-ambient-sm {
+                        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.04);
+                }
+
+                .shadow-ambient-md {
+                        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+                }
+
+                /* Skeleton Animation */
+                @keyframes shimmer {
+                        0% {
+                                background-position: -200% 0;
+                        }
+
+                        100% {
+                                background-position: 200% 0;
+                        }
+                }
+
+                .skeleton {
+                        background: linear-gradient(90deg, #f0edef 25%, #eae7e9 50%, #f0edef 75%);
+                        background-size: 200% 100%;
+                        animation: shimmer 1.5s infinite linear;
+                }
+        </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex flex-col md:flex-row">
+        <!-- Mobile Top Navigation (Visible on mobile only, representing TopNavBar logic) -->
+        <header
+                class="md:hidden flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm z-40 fixed top-0 w-full">
+                <div class="text-headline-md font-headline-md font-bold text-primary">HR Sync</div>
+                <div class="flex gap-md">
+                        <button
+                                class="text-secondary hover:bg-surface-container-low p-sm rounded-full transition-colors">
+                                <span class="material-symbols-outlined">notifications</span>
+                        </button>
+                        <a href="{{ url_for('hr_profile') }}"
+                                class="text-secondary hover:bg-surface-container-low p-sm rounded-full transition-colors inline-flex items-center"
+                                title="Settings">
+                                <span class="material-symbols-outlined">settings</span>
+                        </a>
+                </div>
+        </header>
+        <!-- Desktop Side Navigation (SideNavBar) -->
+        <nav
+                class="hidden md:flex flex-col h-screen py-lg px-md gap-sm bg-surface-bright border-r border-outline-variant fixed left-0 top-0 w-[240px] z-30 overflow-y-auto">
+                <div class="px-md mb-lg">
+                        <a href="{{ url_for('employee_dashboard') }}" class="flex items-center gap-md">
+                                <div
+                                        class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-on-secondary-container"
+                                                data-icon="corporate_fare">corporate_fare</span>
+                                </div>
+                                <div>
+                                        <h1
+                                                class="text-headline-sm font-headline-sm font-black text-primary dark:text-primary-fixed">
+                                                HR Sync</h1>
+                                        <p class="text-label-md font-label-md text-on-surface-variant">Admin Portal
+                                        </p>
+                                </div>
+                        </a>
+                </div>
+                <div class="flex-1 flex flex-col gap-sm">
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+                                href="{{ url_for('hr_dashboard') }}">
+                                <span
+                                        class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                                <span class="text-label-md font-label-md">Dashboard</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+                                href="{{ url_for('hr_attendance') }}">
+                                <span
+                                        class="material-symbols-outlined group-hover:text-primary transition-colors">calendar_today</span>
+                                <span class="text-label-md font-label-md">Attendance</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+                                href="{{ url_for('hr_leave') }}">
+                                <span
+                                        class="material-symbols-outlined group-hover:text-primary transition-colors">event_busy</span>
+                                <span class="text-label-md font-label-md">Leave Management</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all group"
+                                href="{{ url_for('hr_directory') }}">
+                                <span
+                                        class="material-symbols-outlined group-hover:text-primary transition-colors">badge</span>
+                                <span class="text-label-md font-label-md">Employee Directory</span>
+                        </a>
+                        <!-- ACTIVE TAB -->
+                        <a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm scale-[0.98] transition-transform duration-200 shadow-sm relative overflow-hidden"
+                                href="{{ url_for('hr_reports') }}">
+                                <div
+                                        class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity">
+                                </div>
+                                <span class="material-symbols-outlined filled">analytics</span>
+                                <span class="text-label-md font-label-md font-bold">Reports</span>
+                        </a>
+                </div>
+                <div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md">
+                        <a href="{{ url_for('hr_dashboard') }}#checkin-card"
+                                class="w-full bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors py-sm px-md rounded-lg text-label-md font-label-md flex justify-center items-center gap-sm shadow-ambient-sm active:bg-secondary-fixed active:text-on-secondary-fixed">
+                                <span class="material-symbols-outlined text-[18px]">touch_app</span> Check In/Out
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+                                href="{{ url_for('hr_profile') }}">
+                                <span class="material-symbols-outlined">person</span>
+                                <span class="text-label-md font-label-md">My Profile</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+                                href="{{ url_for('hr_profile') }}">
+                                <span class="material-symbols-outlined">settings</span>
+                                <span class="text-label-md font-label-md">Settings</span>
+                        </a>
+                        <a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all"
+                                href="{{ url_for('login') }}">
+                                <span class="material-symbols-outlined">logout</span>
+                                <span class="text-label-md font-label-md">Logout</span>
+                        </a>
+                </div>
+        </nav>
+        <!-- Main Content Canvas -->
+        <main class="flex-1 flex flex-col min-w-0 md:ml-[240px] pt-16 md:pt-0 bg-background overflow-x-hidden">
+                <!-- Page Header & Actions -->
+                <div
+                        class="sticky top-16 md:top-0 bg-background/95 backdrop-blur-sm z-20 border-b border-outline-variant/50 px-lg py-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+                        <div>
+                                <h1 class="text-headline-lg font-headline-lg text-primary">Attendance Reports</h1>
+                                <p class="text-body-md font-body-md text-on-surface-variant mt-xs">Analyze workforce
+                                        attendance patterns and operational metrics.</p>
+                        </div>
+                        <div class="flex gap-sm self-end sm:self-auto">
+                                <button
+                                        class="flex items-center gap-xs px-md py-sm bg-surface text-secondary border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors shadow-ambient-sm group">
+                                        <span
+                                                class="material-symbols-outlined text-[18px] group-hover:-translate-y-0.5 transition-transform">download</span>
+                                        Export CSV
+                                </button>
+                                <button
+                                        class="flex items-center gap-xs px-md py-sm bg-surface text-secondary border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors shadow-ambient-sm group">
+                                        <span
+                                                class="material-symbols-outlined text-[18px] group-hover:-translate-y-0.5 transition-transform">picture_as_pdf</span>
+                                        Export PDF
+                                </button>
+                                <button class="flex items-center justify-center p-sm bg-surface text-secondary border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors shadow-ambient-sm"
+                                        title="Print Report">
+                                        <span class="material-symbols-outlined text-[20px]">print</span>
+                                </button>
+                                <button class="flex items-center justify-center p-sm bg-surface text-secondary border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors shadow-ambient-sm"
+                                        title="Save as Template">
+                                        <span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+                                </button>
+                        </div>
+                </div>
+                <!-- Scrollable Content Area -->
+                <div class="flex-1 p-lg flex flex-col gap-xl overflow-y-auto">
+                        <!-- 1. Report Type Selector (Bento Style Grid Top Row) -->
+                        <section
+                                class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md">
+                                <div class="flex flex-wrap gap-sm">
+                                        <a href="{{ url_for('hr_reports') }}"
+                                                class="px-md py-sm bg-secondary-container text-on-secondary-container rounded-full text-label-md font-label-md border border-secondary transition-colors font-semibold inline-block">Attendance
+                                                Report</a>
+                                        <button
+                                                class="px-md py-sm bg-surface text-on-surface-variant hover:bg-surface-container-highest rounded-full text-label-md font-label-md border border-outline-variant transition-colors">Working
+                                                Hours</button>
+                                        <a href="{{ url_for('hr_leave') }}"
+                                                class="px-md py-sm bg-surface text-on-surface-variant hover:bg-surface-container-highest rounded-full text-label-md font-label-md border border-outline-variant transition-colors inline-block">Leave
+                                                Report</a>
+                                        <a href="{{ url_for('hr_directory') }}"
+                                                class="px-md py-sm bg-surface text-on-surface-variant hover:bg-surface-container-highest rounded-full text-label-md font-label-md border border-outline-variant transition-colors inline-block">Department-wise</a>
+                                        <button
+                                                class="px-md py-sm bg-surface text-on-surface-variant hover:bg-surface-container-highest rounded-full text-label-md font-label-md border border-outline-variant transition-colors">Payroll-ready</button>
+                                        <a href="{{ url_for('hr_directory') }}"
+                                                class="px-md py-sm bg-surface text-on-surface-variant hover:bg-surface-container-highest rounded-full text-label-md font-label-md border border-outline-variant transition-colors inline-block">Individual
+                                                Employee</a>
+                                </div>
+                        </section>
+                        <!-- 2. Filters Row (Glassmorphic subtle card) -->
+                        <section
+                                class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md relative overflow-hidden">
+                                <!-- Subtle background accent -->
+                                <div
+                                        class="absolute -top-10 -right-10 w-32 h-32 bg-primary-fixed-dim/20 rounded-full blur-3xl pointer-events-none">
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md relative z-10">
+                                        <!-- Date Range -->
+                                        <div class="flex flex-col gap-xs">
+                                                <label
+                                                        class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">calendar_month</span>
+                                                        Date Range
+                                                </label>
+                                                <div class="relative group">
+                                                        <select
+                                                                class="w-full bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-md py-sm text-body-md font-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 appearance-none transition-all pr-xl cursor-pointer">
+                                                                <option>This Month</option>
+                                                                <option>Last Month</option>
+                                                                <option>This Quarter</option>
+                                                                <option>Custom Range...</option>
+                                                        </select>
+                                                        <span
+                                                                class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant group-hover:text-secondary pointer-events-none text-[20px] transition-colors">expand_more</span>
+                                                </div>
+                                        </div>
+                                        <!-- Department -->
+                                        <div class="flex flex-col gap-xs">
+                                                <label
+                                                        class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">domain</span>
+                                                        Department
+                                                </label>
+                                                <div class="relative group">
+                                                        <select class="w-full bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-md py-sm text-body-md font-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 appearance-none transition-all pr-xl cursor-pointer"
+                                                                multiple="" size="1" style="height: 42px;">
+                                                                <option selected="">All Departments</option>
+                                                                <option>Engineering</option>
+                                                                <option>Sales</option>
+                                                                <option>HR</option>
+                                                                <option>Marketing</option>
+                                                        </select>
+                                                        <span
+                                                                class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant group-hover:text-secondary pointer-events-none text-[20px] transition-colors">expand_more</span>
+                                                </div>
+                                        </div>
+                                        <!-- Employee Search -->
+                                        <div class="flex flex-col gap-xs">
+                                                <label
+                                                        class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">person_search</span>
+                                                        Employee
+                                                </label>
+                                                <div class="relative group">
+                                                        <span
+                                                                class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant group-hover:text-secondary pointer-events-none text-[20px] transition-colors">search</span>
+                                                        <input class="w-full bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg pl-xl pr-md py-sm text-body-md font-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all placeholder:text-outline outline-none"
+                                                                placeholder="Search name or ID..." type="text" />
+                                                </div>
+                                        </div>
+                                        <!-- Status / Threshold -->
+                                        <div class="flex flex-col gap-xs">
+                                                <label
+                                                        class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">filter_alt</span>
+                                                        Flag / Threshold
+                                                </label>
+                                                <div class="relative group">
+                                                        <select
+                                                                class="w-full bg-surface-container-lowest text-on-surface border border-outline-variant hover:border-secondary hover:bg-secondary/5 rounded-lg px-md py-sm text-body-md font-body-md font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 appearance-none transition-all pr-xl cursor-pointer">
+                                                                <option>All Statuses</option>
+                                                                <option class="text-error">Attendance &lt; 80%</option>
+                                                                <option>Late &gt; 3 Days</option>
+                                                                <option>Perfect Attendance</option>
+                                                        </select>
+                                                        <span
+                                                                class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant group-hover:text-secondary pointer-events-none text-[20px] transition-colors">expand_more</span>
+                                                </div>
+                                        </div>
+                                </div>
+                        </section>
+                        <!-- 3. Report Summary (Metrics Cards - Asymmetric Grid) -->
+                        <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-md">
+                                <!-- Card 1 -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col justify-between group hover:shadow-ambient-md transition-shadow relative overflow-hidden">
+                                        <div
+                                                class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span
+                                                        class="material-symbols-outlined text-[48px] text-primary">calendar_view_month</span>
+                                        </div>
+                                        <div
+                                                class="text-label-md font-label-md text-on-surface-variant z-10 uppercase tracking-wider">
+                                                Total Working Days</div>
+                                        <div class="text-display-lg font-display-lg text-primary mt-sm z-10">22</div>
+                                        <div class="text-[11px] text-outline mt-xs z-10 flex items-center gap-1">
+                                                <span
+                                                        class="material-symbols-outlined text-[12px] text-on-surface-variant">info</span>
+                                                standard month
+                                        </div>
+                                </div>
+                                <!-- Card 2 (Highlight Card) -->
+                                <div
+                                        class="bg-secondary-fixed/30 rounded-xl shadow-ambient-sm border border-secondary-fixed p-md flex flex-col justify-between group hover:shadow-ambient-md transition-shadow relative overflow-hidden">
+                                        <div
+                                                class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span
+                                                        class="material-symbols-outlined text-[48px] text-secondary">analytics</span>
+                                        </div>
+                                        <div
+                                                class="text-label-md font-label-md text-secondary-fixed-variant font-semibold z-10 uppercase tracking-wider">
+                                                Overall Attendance</div>
+                                        <div
+                                                class="text-display-lg font-display-lg text-on-secondary-fixed-variant mt-sm z-10">
+                                                94.2<span class="text-headline-md">%</span></div>
+                                        <div
+                                                class="text-[11px] text-secondary mt-xs z-10 flex items-center gap-1 font-medium">
+                                                <span
+                                                        class="material-symbols-outlined text-[12px] text-on-surface-variant">trending_up</span>
+                                                +1.2% from last month
+                                        </div>
+                                </div>
+                                <!-- Card 3 -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col justify-between group hover:shadow-ambient-md transition-shadow relative overflow-hidden">
+                                        <div
+                                                class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span
+                                                        class="material-symbols-outlined text-[48px] text-primary">schedule</span>
+                                        </div>
+                                        <div
+                                                class="text-label-md font-label-md text-on-surface-variant z-10 uppercase tracking-wider">
+                                                Total Hours</div>
+                                        <div class="text-display-lg font-display-lg text-primary mt-sm z-10">14,250<span
+                                                        class="text-headline-md text-outline">h</span></div>
+                                        <div class="text-[11px] text-outline mt-xs z-10 flex items-center gap-1">
+                                                avg 44.5h/employee
+                                        </div>
+                                </div>
+                                <!-- Card 4 -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col justify-between group hover:shadow-ambient-md transition-shadow relative overflow-hidden">
+                                        <div
+                                                class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span
+                                                        class="material-symbols-outlined text-[48px] text-primary">event_busy</span>
+                                        </div>
+                                        <div
+                                                class="text-label-md font-label-md text-on-surface-variant z-10 uppercase tracking-wider">
+                                                Total Leave Days</div>
+                                        <div class="text-display-lg font-display-lg text-primary mt-sm z-10">84</div>
+                                        <div class="text-[11px] text-outline mt-xs z-10 flex items-center gap-1">
+                                                across 32 employees
+                                        </div>
+                                </div>
+                                <!-- Card 5 -->
+                                <div
+                                        class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col justify-between group hover:shadow-ambient-md transition-shadow relative overflow-hidden hidden lg:flex">
+                                        <div
+                                                class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span
+                                                        class="material-symbols-outlined text-[48px] text-primary">group</span>
+                                        </div>
+                                        <div
+                                                class="text-label-md font-label-md text-on-surface-variant z-10 uppercase tracking-wider">
+                                                Headcount</div>
+                                        <div class="text-display-lg font-display-lg text-primary mt-sm z-10">320</div>
+                                        <div class="text-[11px] text-outline mt-xs z-10 flex items-center gap-1">
+                                                active this period
+                                        </div>
+                                </div>
+                        </section>
+                        <!-- 4. Visual Analytics (Bento Layout) -->
+                        <section class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+                                <!-- Main Chart (Line - Placeholder via CSS pattern for structural rep) -->
+                                <div
+                                        class="lg:col-span-2 bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col min-h-[300px]">
+                                        <div
+                                                class="flex justify-between items-center mb-md border-b border-outline-variant/50 pb-sm">
+                                                <h3 class="text-headline-md font-headline-md text-primary">Attendance
+                                                        Trend</h3>
+                                                <button
+                                                        class="p-xs hover:bg-surface-container-low rounded transition-colors"><span
+                                                                class="material-symbols-outlined text-on-surface-variant text-[20px]">more_vert</span></button>
+                                        </div>
+                                        <div
+                                                class="flex-1 w-full bg-surface-container-low rounded border border-outline-variant/30 flex items-center justify-center relative overflow-hidden">
+                                                <!-- Simulated Chart Grid -->
+                                                <div class="absolute inset-0"
+                                                        style="background-image: linear-gradient(to right, #e4e2e4 1px, transparent 1px), linear-gradient(to bottom, #e4e2e4 1px, transparent 1px); background-size: 20% 25%; opacity: 0.5;">
+                                                </div>
+                                                <!-- Simulated Line Path (SVG for simple clean representation without heavy libraries) -->
+                                                <svg class="absolute inset-0 w-full h-full" preserveaspectratio="none"
+                                                        viewbox="0 0 100 100">
+                                                        <path d="M0,80 Q10,70 20,75 T40,60 T60,50 T80,40 T100,45"
+                                                                fill="none" stroke="#2170e4" stroke-width="2"
+                                                                vector-effect="non-scaling-stroke"></path>
+                                                        <path d="M0,80 Q10,70 20,75 T40,60 T60,50 T80,40 T100,45 L100,100 L0,100 Z"
+                                                                fill="rgba(33, 112, 228, 0.1)" stroke="none"></path>
+                                                </svg>
+                                                <span
+                                                        class="text-label-md text-on-surface-variant z-10 bg-surface/80 px-2 py-1 rounded backdrop-blur">Chart
+                                                        Visualization Canvas</span>
+                                        </div>
+                                </div>
+                                <!-- Secondary Charts Stack -->
+                                <div class="flex flex-col gap-md">
+                                        <!-- Bar Chart -->
+                                        <div
+                                                class="flex-1 bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col">
+                                                <div class="flex justify-between items-center mb-sm">
+                                                        <h3
+                                                                class="text-label-md font-label-md font-semibold text-primary">
+                                                                Dept Average Hours</h3>
+                                                </div>
+                                                <div class="flex-1 flex items-end gap-xs pt-4">
+                                                        <div
+                                                                class="flex-1 bg-secondary-container rounded-t-sm h-[80%] relative group">
+                                                                <span
+                                                                        class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">45h</span>
+                                                        </div>
+                                                        <div
+                                                                class="flex-1 bg-surface-tint opacity-70 rounded-t-sm h-[60%] relative group">
+                                                                <span
+                                                                        class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">41h</span>
+                                                        </div>
+                                                        <div
+                                                                class="flex-1 bg-surface-tint opacity-50 rounded-t-sm h-[90%] relative group">
+                                                                <span
+                                                                        class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">48h</span>
+                                                        </div>
+                                                        <div
+                                                                class="flex-1 bg-surface-tint opacity-30 rounded-t-sm h-[50%] relative group">
+                                                                <span
+                                                                        class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">38h</span>
+                                                        </div>
+                                                </div>
+                                                <div
+                                                        class="flex justify-between mt-1 text-[10px] text-on-surface-variant border-t border-outline-variant/30 pt-1">
+                                                        <span>ENG</span><span>SAL</span><span>HR</span><span>MKT</span>
+                                                </div>
+                                        </div>
+                                        <!-- Donut Chart -->
+                                        <div
+                                                class="flex-1 bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/50 p-md flex flex-col">
+                                                <div class="flex justify-between items-center mb-sm">
+                                                        <h3
+                                                                class="text-label-md font-label-md font-semibold text-primary">
+                                                                Leave Distribution</h3>
+                                                </div>
+                                                <div class="flex-1 flex items-center justify-center relative">
+                                                        <!-- CSS Donut representation -->
+                                                        <div
+                                                                class="w-24 h-24 rounded-full border-[16px] border-surface-container-high border-t-secondary-container border-r-secondary-container border-b-tertiary-fixed-dim transform -rotate-45 relative">
+                                                                <div
+                                                                        class="absolute inset-0 m-auto w-16 h-16 bg-surface-container-lowest rounded-full transform rotate-45 flex items-center justify-center shadow-inner">
+                                                                        <span
+                                                                                class="text-label-md font-bold text-primary">84</span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </section>
+                        <!-- 5. Main Data Table -->
+                        <section
+                                class="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant p-0 overflow-hidden flex flex-col">
+                                <div
+                                        class="px-md py-sm border-b border-outline-variant bg-surface flex justify-between items-center">
+                                        <h2 class="text-headline-md font-headline-md text-primary">Detailed Records</h2>
+                                        <div class="flex gap-sm">
+                                                <button
+                                                        class="text-on-surface-variant hover:text-primary transition-colors"><span
+                                                                class="material-symbols-outlined text-[20px]">view_column</span></button>
+                                                <button
+                                                        class="text-on-surface-variant hover:text-primary transition-colors"><span
+                                                                class="material-symbols-outlined text-[20px]">filter_list</span></button>
+                                        </div>
+                                </div>
+                                <div class="overflow-x-auto">
+                                        <table class="w-full text-left border-collapse min-w-[1000px]">
+                                                <thead>
+                                                        <tr
+                                                                class="bg-surface-container text-label-md font-label-md text-on-surface-variant border-b border-outline-variant">
+                                                                <th
+                                                                        class="py-sm px-md font-medium cursor-pointer hover:bg-surface-variant transition-colors group">
+                                                                        <div class="flex items-center gap-xs">Employee
+                                                                                <span
+                                                                                        class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100">arrow_downward</span>
+                                                                        </div>
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium">Department</th>
+                                                                <th class="py-sm px-md font-medium text-right">Present
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium text-right">Absent
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium text-right">Late</th>
+                                                                <th class="py-sm px-md font-medium text-right">Half-days
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium text-right">Leave
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium text-right">Total Hrs
+                                                                </th>
+                                                                <th class="py-sm px-md font-medium text-right">Avg/Day
+                                                                </th>
+                                                                <th
+                                                                        class="py-sm px-md font-medium text-right cursor-pointer hover:bg-surface-variant transition-colors group">
+                                                                        <div
+                                                                                class="flex items-center justify-end gap-xs">
+                                                                                Att. % <span
+                                                                                        class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100">arrow_downward</span>
+                                                                        </div>
+                                                                </th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody class="text-data-table font-data-table text-on-surface">
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-[#F1F5F9] transition-colors group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold overflow-hidden shrink-0">
+                                                                                <img src="/static/images/abhilash_avatar.jpg" alt="Abhilash Bhunia" class="w-full h-full object-cover" onerror="this.remove()">
+                                                                                <span>AB</span>
+                                                                        </div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary font-semibold">Abhilash
+                                                                                Bhunia</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">
+                                                                        Engineering &amp; Design</td>
+                                                                <td class="py-sm px-md text-right">22</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">184.0</td>
+                                                                <td class="py-sm px-md text-right">8.4</td>
+                                                                <td class="py-sm px-md text-right font-medium text-emerald-600 font-semibold">100%</td>
+                                                        </tr>
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-[#F1F5F9] transition-colors group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center text-[10px] font-bold">
+                                                                                AS</div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary">Alice
+                                                                                Smith</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">
+                                                                        Engineering</td>
+                                                                <td class="py-sm px-md text-right">22</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">1</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">182.5</td>
+                                                                <td class="py-sm px-md text-right">8.3</td>
+                                                                <td class="py-sm px-md text-right font-medium">100%</td>
+                                                        </tr>
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-[#F1F5F9] transition-colors group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center text-[10px] font-bold">
+                                                                                BJ</div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary">Bob
+                                                                                Johnson</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">Sales
+                                                                </td>
+                                                                <td class="py-sm px-md text-right">19</td>
+                                                                <td class="py-sm px-md text-right">1</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">2</td>
+                                                                <td class="py-sm px-md text-right">158.0</td>
+                                                                <td class="py-sm px-md text-right">8.1</td>
+                                                                <td class="py-sm px-md text-right font-medium">86.3%
+                                                                </td>
+                                                        </tr>
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-error-container/20 transition-colors bg-error/5 group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-surface-variant text-on-surface flex items-center justify-center text-[10px] font-bold">
+                                                                                CD</div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary">Charlie
+                                                                                Davis</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">
+                                                                        Marketing</td>
+                                                                <td class="py-sm px-md text-right">15</td>
+                                                                <td class="py-sm px-md text-right">4</td>
+                                                                <td class="py-sm px-md text-right">3</td>
+                                                                <td class="py-sm px-md text-right">1</td>
+                                                                <td class="py-sm px-md text-right">2</td>
+                                                                <td class="py-sm px-md text-right">112.5</td>
+                                                                <td class="py-sm px-md text-right text-error">7.1</td>
+                                                                <td
+                                                                        class="py-sm px-md text-right font-bold text-error flex justify-end items-center gap-1">
+                                                                        <span
+                                                                                class="material-symbols-outlined text-[14px]">warning</span>
+                                                                        68.1%
+                                                                </td>
+                                                        </tr>
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-[#F1F5F9] transition-colors group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-[10px] font-bold">
+                                                                                ER</div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary">Elena
+                                                                                Rodriguez</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">
+                                                                        Engineering</td>
+                                                                <td class="py-sm px-md text-right">21</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">1</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">174.0</td>
+                                                                <td class="py-sm px-md text-right">8.2</td>
+                                                                <td class="py-sm px-md text-right font-medium">95.4%
+                                                                </td>
+                                                        </tr>
+                                                        <tr
+                                                                class="border-b border-outline-variant/30 hover:bg-[#F1F5F9] transition-colors group">
+                                                                <td
+                                                                        class="py-sm px-md font-medium flex items-center gap-sm">
+                                                                        <div
+                                                                                class="w-6 h-6 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center text-[10px] font-bold">
+                                                                                ML</div>
+                                                                        <a href="{{ url_for('hr_employee_profile') }}"
+                                                                                class="hover:underline hover:text-secondary">Marcus
+                                                                                Lee</a>
+                                                                </td>
+                                                                <td class="py-sm px-md text-on-surface-variant">HR</td>
+                                                                <td class="py-sm px-md text-right">20</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">1</td>
+                                                                <td class="py-sm px-md text-right">0</td>
+                                                                <td class="py-sm px-md text-right">2</td>
+                                                                <td class="py-sm px-md text-right">165.5</td>
+                                                                <td class="py-sm px-md text-right">8.2</td>
+                                                                <td class="py-sm px-md text-right font-medium">90.9%
+                                                                </td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                </div>
+                                <div
+                                        class="px-md py-sm border-t border-outline-variant bg-surface flex justify-between items-center text-label-md font-label-md text-on-surface-variant">
+                                        <span>Showing 1 to 6 of 320 entries</span>
+                                        <div class="flex gap-sm">
+                                                <button
+                                                        class="px-sm py-xs border border-outline-variant rounded hover:bg-surface-container-low transition-colors disabled:opacity-50">Prev</button>
+                                                <button
+                                                        class="px-sm py-xs bg-secondary-container text-on-secondary-container rounded border border-secondary transition-colors">1</button>
+                                                <button
+                                                        class="px-sm py-xs border border-outline-variant rounded hover:bg-surface-container-low transition-colors">2</button>
+                                                <button
+                                                        class="px-sm py-xs border border-outline-variant rounded hover:bg-surface-container-low transition-colors">3</button>
+                                                <span class="px-sm py-xs">...</span>
+                                                <button
+                                                        class="px-sm py-xs border border-outline-variant rounded hover:bg-surface-container-low transition-colors">Next</button>
+                                        </div>
+                                </div>
+                        </section>
+                </div>
+        </main>
+</body>
+
+</html>

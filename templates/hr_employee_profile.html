@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Profile - HR Sync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#fcdeb5",
+                      "secondary-fixed": "#d8e2ff",
+                      "tertiary": "#000000",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#dcd9db",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#f0edef",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f6f3f5",
+                      "primary": "#000000",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "surface": "#fcf8fa",
+                      "surface-container-high": "#eae7e9",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#131b2e",
+                      "on-tertiary-container": "#98805d",
+                      "inverse-surface": "#303032",
+                      "on-primary-container": "#7c839b",
+                      "on-secondary-container": "#fefcff",
+                      "surface-tint": "#565e74",
+                      "inverse-primary": "#bec6e0",
+                      "primary-container": "#131b2e",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-tertiary-fixed": "#271901",
+                      "on-background": "#1b1b1d",
+                      "primary-fixed": "#dae2fd",
+                      "outline": "#76777d",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#fcf8fa",
+                      "on-surface": "#1b1b1d",
+                      "outline-variant": "#c6c6cd",
+                      "on-surface-variant": "#45464d",
+                      "on-secondary-fixed": "#001a42",
+                      "background": "#fcf8fa",
+                      "tertiary-container": "#271901",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "secondary-container": "#2170e4",
+                      "surface-variant": "#e4e2e4",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "surface-container-highest": "#e4e2e4",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#0058be",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004395",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "32px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "gutter": "20px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "data-table": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-table": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .shadow-surface-1 {
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex bg-surface fixed h-full w-60 left-0 top-0 bg-surface-container-low shadow-sm flex flex-col h-full border-r border-outline-variant/30 z-20">
+<div class="p-lg flex items-center gap-md border-b border-outline-variant/30">
+<img alt="HR Sync Logo" class="w-10 h-10 rounded-full object-cover shrink-0" data-alt="A minimalist and professional corporate logo icon for HR Sync, designed in deep blue and light gray tones. The logo features a stylized abstract lettermark or geometric symbol representing connectivity and human resources. The design is modern, sleek, and placed on a pure white background for high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv2gKIXGwsn2LJQRFIwWmEK0gu0x_dmkySnK2LykSz_4hnUPodhYDz2KIrIlMV-d8bYmb5fdeWTv0fpocsNzXylJvwwlPx09lpyvTOskY_LG_8mGNuzfqck2q1qVvVNTPPElBsJeswJcgm0hpxR1zxBtUVp2-RzGzrHN7kjjN7Ww94nRUEEEwQgLe-1zwgq0A85-bCAuSb7b2Za4nOCKaU7KAFC6wPHIXHpmzF1pYMCev1HZEy2EKTDA"/>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary m-0 tracking-tight">HR Sync</h1>
+<p class="font-label-md text-label-md text-on-surface-variant m-0">Management Portal</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-md">
+<ul class="flex flex-col gap-sm px-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-container/10 transition-colors font-body-md text-body-md group" href="{{ url_for('hr_dashboard') }}">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-container/10 transition-colors font-body-md text-body-md group" href="{{ url_for('hr_attendance') }}">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="calendar_today">calendar_today</span>
+<span>Attendance</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-container/10 transition-colors font-body-md text-body-md group" href="{{ url_for('hr_leave') }}">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="event_busy">event_busy</span>
+<span>Leave Management</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary font-bold border-r-4 border-secondary bg-secondary-container/10 opacity-90 transition-opacity duration-150 font-body-md text-body-md group" href="{{ url_for('hr_directory') }}">
+<span class="material-symbols-outlined text-secondary" data-icon="groups" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span>Employee Directory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-container/10 transition-colors font-body-md text-body-md group" href="{{ url_for('hr_reports') }}">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md p-md">
+<a href="{{ url_for('hr_dashboard') }}#checkin-card" class="w-full bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors py-sm px-md rounded-lg text-label-md font-label-md flex justify-center items-center gap-sm shadow-ambient-sm active:bg-secondary-fixed active:text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">touch_app</span> Check In/Out
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all" href="{{ url_for('hr_profile') }}">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-md font-label-md">My Profile</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all" href="{{ url_for('hr_profile') }}">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all" href="{{ url_for('login') }}">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-h-screen md:ml-60 w-full max-w-full">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant/30 flex justify-between items-center w-full px-lg h-16 sticky top-0 z-10 shrink-0">
+<div class="flex items-center gap-md md:hidden">
+<button class="p-sm rounded-full hover:bg-surface-container transition-all text-on-surface-variant focus:outline-none">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a href="{{ url_for('hr_dashboard') }}" class="font-headline-md text-headline-md font-bold text-primary">HR Sync</a>
+</div>
+<div class="flex items-center bg-surface-container-low rounded-lg px-md py-sm max-w-md w-full ml-auto md:ml-0 border border-outline-variant/30 focus-within:border-secondary focus-within:ring-2 focus-within:ring-secondary/20 transition-all shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface focus:ring-0 p-0 placeholder:text-on-surface-variant/70" placeholder="Search employees..." type="text"/>
+</div>
+<div class="flex items-center gap-sm ml-auto">
+<button class="p-sm rounded-full hover:bg-surface-container transition-all text-on-surface-variant relative focus:outline-none">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<a href="{{ url_for('hr_profile') }}" class="p-sm rounded-full hover:bg-surface-container transition-all text-on-surface-variant focus:outline-none" title="Settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</a>
+<a href="{{ url_for('hr_profile') }}" class="ml-sm rounded-full overflow-hidden border border-outline-variant/30 focus:outline-none hover:ring-2 hover:ring-secondary/30 transition-all w-8 h-8 block" title="Profile">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of HR administrator Alex Mercer." src="{{ url_for('static', filename='images/alex_mercer_avatar.jpg') }}"/>
+</a>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 p-lg md:p-container-margin overflow-y-auto">
+<!-- Breadcrumbs & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+<div class="flex items-center text-on-surface-variant font-body-md text-body-md">
+<a class="hover:text-secondary transition-colors" href="{{ url_for('hr_directory') }}">Employee Directory</a>
+<span class="material-symbols-outlined text-sm mx-xs">chevron_right</span>
+<span class="text-on-surface">{{ employee.name if employee else 'Abhilash Bhunia' }}</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-sm px-md py-sm rounded-lg text-secondary border border-outline-variant/30 bg-transparent hover:bg-secondary-container/10 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">key</span>
+                        Reset Password
+                    </button>
+<button class="flex items-center gap-sm px-md py-sm rounded-lg text-primary border border-outline-variant/30 bg-surface-container-lowest hover:bg-surface-container-low transition-colors font-label-md text-label-md shadow-surface-1">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                        Edit Profile
+                    </button>
+</div>
+</div>
+<!-- Profile Header Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 p-lg mb-lg border border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center gap-lg">
+<div class="relative shrink-0">
+<img alt="{{ employee.name if employee else 'Abhilash Bhunia' }}" class="w-24 h-24 rounded-full object-cover border-4 border-surface-container-lowest shadow-sm" src="{{ employee.avatar if (employee and employee.avatar) else url_for('static', filename='images/abhilash_avatar.jpg') }}"/>
+<span class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 border-2 border-surface-container-lowest rounded-full" title="Active"></span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-primary m-0">{{ employee.name if employee else 'Abhilash Bhunia' }}</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs mb-md">{{ employee.designation if employee else 'Product Designer' }}</p>
+<div class="flex items-center gap-md flex-wrap">
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-sm py-xs rounded-md">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+                            {{ employee.emp_code if employee else 'EMP-101' }}
+                        </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-sm py-xs rounded-md">
+<span class="material-symbols-outlined text-[16px]">business_center</span>
+                            {{ employee.department if employee else 'Engineering & Design' }}
+                        </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-sm py-xs rounded-md">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                            New York Office
+                        </div>
+</div>
+</div>
+<div class="shrink-0 w-full md:w-auto flex flex-col items-end gap-md">
+<div class="flex items-center justify-between w-full md:w-auto gap-md bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant/30">
+<span class="font-label-md text-label-md text-on-surface">Account Status</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+<span class="ml-2 font-label-md text-label-md text-on-surface-variant w-10 text-right">Active</span>
+</label>
+</div>
+<button class="w-full md:w-auto flex items-center justify-center gap-sm px-md py-sm rounded-lg text-error hover:bg-error/10 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">block</span>
+                        Deactivate Employee
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Left Column (Wider) -->
+<div class="lg:col-span-2 flex flex-col gap-lg">
+<!-- Personal & Employment Info Tabs/Sections (Glassmorphism inspired clean cards) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 border border-outline-variant/30 overflow-hidden">
+<div class="border-b border-outline-variant/30 bg-surface-container-low/50 px-lg py-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">person</span>
+<h3 class="font-headline-md text-headline-md text-primary m-0">Personal Information</h3>
+</div>
+<div class="p-lg grid grid-cols-1 md:grid-cols-2 gap-y-lg gap-x-xl">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Full Name</label>
+<div class="font-body-md text-body-md text-on-surface">{{ employee.name if employee else 'Abhilash Bhunia' }}</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Email Address</label>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">mail</span>
+                                    {{ employee.email if employee else 'abhilash.bhunia@hrsync.com' }}
+                                </div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Phone Number</label>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span>
+                                    {{ employee.phone if (employee and employee.phone) else '+1 (555) 234-5678' }}
+                                </div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Date of Birth</label>
+<div class="font-body-md text-body-md text-on-surface">Oct 14, 1990</div>
+</div>
+<div class="md:col-span-2 border-t border-outline-variant/30 pt-md mt-sm">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Residential Address</label>
+<div class="font-body-md text-body-md text-on-surface">4230 Park Avenue, Apt 4B, New York, NY 10022</div>
+</div>
+<div class="md:col-span-2 bg-surface-container-low/50 p-md rounded-lg border border-outline-variant/30">
+<h4 class="font-label-md text-label-md text-primary mb-md font-bold uppercase tracking-wider">Emergency Contact</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Name (Relationship)</label>
+<div class="font-body-md text-body-md text-on-surface">Marcus Vance (Spouse)</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Contact Number</label>
+<div class="font-body-md text-body-md text-on-surface">+1 (555) 987-6543</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 border border-outline-variant/30 overflow-hidden">
+<div class="border-b border-outline-variant/30 bg-surface-container-low/50 px-lg py-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">work</span>
+<h3 class="font-headline-md text-headline-md text-primary m-0">Employment Details</h3>
+</div>
+<div class="p-lg grid grid-cols-1 md:grid-cols-2 gap-y-lg gap-x-xl">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Employee ID</label>
+<div class="font-body-md text-body-md text-on-surface font-mono">{{ employee.emp_code if employee else 'EMP-101' }}</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Employment Type</label>
+<div class="font-body-md text-body-md text-on-surface inline-flex items-center px-sm py-xs rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant text-[12px] font-medium">
+                                    Full-time
+                                </div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Department</label>
+<div class="font-body-md text-body-md text-on-surface">{{ employee.department if employee else 'Engineering & Design' }}</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Designation</label>
+<div class="font-body-md text-body-md text-on-surface">{{ employee.designation if employee else 'Product Designer' }}</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Joining Date</label>
+<div class="font-body-md text-body-md text-on-surface">March 15, 2023</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Reporting Manager</label>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-sm">
+<img alt="Manager" class="w-6 h-6 rounded-full object-cover" data-alt="A small, circular avatar portrait of a male design director named David Chen. He looks professional and modern, set against a light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXl05UIPHA0aRBdRLKnY-zzWTf5dotLyUG9KUOMmOek8qiu7NTMLP7BCRDO3yRQJ0GAzb1ZcfxBTMQvFoO5ovYW_l1uCzMQ4GkvtzfaLbJqaUuV9et5SChaRtdywYpjVvbOgsY9wCjVrYj5Xo3_dZ8a3iir08r0oU_djLuv4vJwlkB4aSm126nk1XFZMiLhGUvDwL5_oSsYWL6XQqtnPL8-M_kk8G8DvM1vbvAxt7Q9jKHAuEMGaX30A"/>
+                                    David Chen
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Widgets) -->
+<div class="flex flex-col gap-lg">
+<!-- Performance / Attendance Summary -->
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 border border-outline-variant/30 p-lg">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md text-primary m-0">This Month</h3>
+<a class="font-label-md text-label-md text-secondary hover:underline flex items-center" href="{{ url_for('hr_attendance') }}">
+                                View Details <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-3 gap-sm mb-lg">
+<div class="bg-surface-container-low rounded-lg p-sm text-center border border-outline-variant/20">
+<div class="font-display-lg text-display-lg text-primary mb-xs">21</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Present</div>
+</div>
+<div class="bg-error-container/30 rounded-lg p-sm text-center border border-error/10">
+<div class="font-display-lg text-display-lg text-on-error-container mb-xs">1</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Absent</div>
+</div>
+<div class="bg-tertiary-fixed/30 rounded-lg p-sm text-center border border-on-tertiary-fixed-variant/10">
+<div class="font-display-lg text-display-lg text-on-tertiary-fixed-variant mb-xs">0</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Late</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 pt-md">
+<div class="flex justify-between items-center mb-sm">
+<h4 class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Leave Balance</h4>
+<a href="{{ url_for('hr_leave') }}" class="font-label-md text-label-md text-secondary hover:underline flex items-center">Manage <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<ul class="flex flex-col gap-sm">
+<li class="flex justify-between items-center font-data-table text-data-table text-on-surface">
+<span class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span> Annual Leave</span>
+<span class="font-medium">12 Days</span>
+</li>
+<li class="flex justify-between items-center font-data-table text-data-table text-on-surface">
+<span class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-error"></span> Sick Leave</span>
+<span class="font-medium">4 Days</span>
+</li>
+<li class="flex justify-between items-center font-data-table text-data-table text-on-surface">
+<span class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span> Casual Leave</span>
+<span class="font-medium">2 Days</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Shift & Schedule -->
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 border border-outline-variant/30 p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<h3 class="font-headline-md text-headline-md text-primary m-0">Shift Schedule</h3>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant/30">
+<div class="font-body-lg text-body-lg text-primary font-medium mb-xs">Regular Shift</div>
+<div class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-[16px]">nest_clock_farsight_analog</span>
+                                09:00 AM - 06:00 PM
+                            </div>
+<div class="flex gap-xs">
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">M</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">T</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">W</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">T</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-secondary text-white font-label-md text-[10px]">F</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-variant text-on-surface-variant font-label-md text-[10px]">S</span>
+<span class="w-6 h-6 rounded flex items-center justify-center bg-surface-variant text-on-surface-variant font-label-md text-[10px]">S</span>
+</div>
+</div>
+</div>
+<!-- Documents -->
+<div class="bg-surface-container-lowest rounded-xl shadow-surface-1 border border-outline-variant/30 p-lg">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md text-primary m-0">Documents</h3>
+<button class="p-xs rounded hover:bg-surface-container-low transition-colors text-secondary">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<ul class="flex flex-col gap-sm">
+<li class="flex items-center justify-between p-sm rounded-lg border border-outline-variant/30 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-error-container/30 text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</div>
+<div>
+<div class="font-data-table text-data-table text-primary font-medium line-clamp-1">Signed_Offer_Letter.pdf</div>
+<div class="font-label-md text-[10px] text-on-surface-variant">1.2 MB • Mar 10, 2023</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</li>
+<li class="flex items-center justify-between p-sm rounded-lg border border-outline-variant/30 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-secondary-fixed/50 text-on-secondary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">image</span>
+</div>
+<div>
+<div class="font-data-table text-data-table text-primary font-medium line-clamp-1">State_ID_Front.jpg</div>
+<div class="font-label-md text-[10px] text-on-surface-variant">845 KB • Mar 12, 2023</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
